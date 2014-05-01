@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
+ * // Source: http://www.inf.fu-berlin.de/lehre/SS14/Computergrafik/GrafikDemoProgramm.java
  * Created by Julian on 01.05.2014.
  */
 class TestPanel extends JPanel implements MouseListener {

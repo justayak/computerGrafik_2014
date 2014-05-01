@@ -3,6 +3,7 @@ package aufgabe25;
 import javax.swing.*;
 
 /**
+ * // Source: http://www.inf.fu-berlin.de/lehre/SS14/Computergrafik/GrafikDemoProgramm.java
  * Created by Julian on 01.05.2014.
  */
 public class GrafikDemoProgramm {
