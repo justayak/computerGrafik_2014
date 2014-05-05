@@ -10,10 +10,10 @@ public class GrafikDemoProgramm {
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Grafik-Testprogramm");
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600,400);
-        JPanel panel = new TestPanel();
-
+        frame.setSize(800,600);
+        JPanel panel = new AliasingFrame();
         frame.getContentPane().add(panel);
         //Display the window.
         frame.setVisible(true);

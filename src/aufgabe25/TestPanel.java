@@ -19,7 +19,7 @@ class TestPanel extends JPanel implements MouseListener {
         Dimension d=getSize();  // loesche die Anzeige
         g.fillRect(0,0,d.width,d.height);
         g.setColor(Color.white);
-        g.fillRect(x,y,4,4);
+        g.fillRect(x,y,14,4);
     }
 
     public TestPanel() {
