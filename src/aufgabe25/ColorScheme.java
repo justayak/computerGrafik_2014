@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public interface ColorScheme {
 	
-	public Color calculateColor(double x);
+	public int calculateColor(float x);
 	
 	public String getDescription();
 
