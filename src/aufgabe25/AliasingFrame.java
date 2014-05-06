@@ -35,6 +35,7 @@ public class AliasingFrame extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // Verändere den 'r'-Wert, abhängig von der Mausposition
         r = r_BASE * e.getXOnScreen();
         repaint();
     }
