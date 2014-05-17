@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
  */
 public class AliasingFrame extends JPanel implements MouseListener {
 
-    private final int r_BASE = 500;
+    private final int r_BASE = 10;
     private int r = r_BASE;
 
     public AliasingFrame(){
@@ -23,7 +23,7 @@ public class AliasingFrame extends JPanel implements MouseListener {
         Dimension d=getSize();
         for(int x = 0;x < d.getWidth();x++){
             for(int y = 0; y < d.getHeight(); y++){
-                int rgb = (x*x + y*y) % r;
+                int rgb = (x*x + y*y) % (r*r);
                 ColorManager.drawPixel(g,x,y,rgb);
             }
         }
@@ -36,7 +36,7 @@ public class AliasingFrame extends JPanel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         // Verändere den 'r'-Wert, abhängig von der Mausposition
-        r = r_BASE * e.getXOnScreen();
+        r = r_BASE *  (e.getXOnScreen() / 9) == 0 ? 1 : (e.getXOnScreen() / 3);
         repaint();
     }
 
