@@ -28,6 +28,38 @@ class TestPanel extends JPanel implements MouseListener {
         g.fillRect(x1,y1,SIZE,SIZE);
         g.fillRect(x2,y2,SIZE,SIZE);
 
+        if (this.isP2Set()){
+
+            // actually draw the line
+            int x1 = oneToBig(this.x1);
+            int x2 = oneToBig(this.x2);
+            int y1 = oneToBig(this.y1);
+            int y2 = oneToBig(this.y2);
+
+            int deltaX = Math.max(x1,x2) - Math.min(x1,x2);
+            int deltaY = Math.max(y1,y2) - Math.min(y1,y2);
+            double error = 0;
+            double deltaError = Math.abs( (double)deltaY / deltaX);
+            int y = Math.min(y1,y2);
+            System.out.println("hi  " + Math.max(x1,x2) + " | " + Math.min(y1,y2));
+
+
+            for (int x = Math.min(x1,x2); x > Math.max(x1,x2);x++){
+
+                this.plot(x,y,g);
+                error = error + deltaError;
+                if (error >= 0.5){
+                    y = y+1;
+                    error -= 1;
+                }
+            }
+
+        }
+
+    }
+
+    private void plot(int bigX, int bigY, Graphics g){
+        g.fillRect(bigToOne(bigX),bigToOne(bigY),SIZE, SIZE);
     }
 
     private void drawGrid(Graphics g, Dimension d){
@@ -53,7 +85,7 @@ class TestPanel extends JPanel implements MouseListener {
     // mousePressed(): Mausknopf wurde betaetigt
     // Hier: neue Punktkoordinaten aufnehmen
     public void mousePressed(MouseEvent e) {
-        if (x1 < 0){
+        if (!this.isP1Set()){
             x1 = clamp(e.getX());
             y1 = clamp(e.getY());
         }else{
@@ -63,13 +95,16 @@ class TestPanel extends JPanel implements MouseListener {
         repaint();
     }
 
+    private boolean isP1Set(){ return x1 > 0; }
+    private boolean isP2Set(){ return x2 > 0; }
+
+
     /**
      * Wandelt BIG-Pixel in echte Pixel um
      * @param n [Integer} Big-Pixel
      * @return {Integer} Pixel
      */
     public static int bigToOne(int n){
-        if ((n%SIZE)!= 0) throw new RuntimeException("Number " + n + " is not multiple of " + SIZE);
         return n*SIZE;
     }
 
