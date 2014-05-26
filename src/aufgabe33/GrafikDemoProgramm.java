@@ -25,37 +25,73 @@ class TestPanel extends JPanel implements MouseListener {
         drawGrid(g,d);
 
         g.setColor(Color.white);
+
+        /*
         g.fillRect(x1,y1,SIZE,SIZE);
         g.fillRect(x2,y2,SIZE,SIZE);
+        */
+
+        this.plot(x1,y1,g);
+        this.plot(x2,y2,g);
 
         if (this.isP2Set()){
+            int xstart = oneToBig(this.x1);
+            int ystart = oneToBig(this.y1);
+            int xend = oneToBig(this.x2);
+            int yend = oneToBig(this.y2);
+            int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
 
-            // actually draw the line
-            int x1 = oneToBig(this.x1);
-            int x2 = oneToBig(this.x2);
-            int y1 = oneToBig(this.y1);
-            int y2 = oneToBig(this.y2);
+            System.out.println(xstart + " |t " + ystart + " j " + this.x1);
 
-            int deltaX = Math.max(x1,x2) - Math.min(x1,x2);
-            int deltaY = Math.max(y1,y2) - Math.min(y1,y2);
-            double error = 0;
-            double deltaError = Math.abs( (double)deltaY / deltaX);
-            int y = Math.min(y1,y2);
-            System.out.println("hi  " + Math.max(x1,x2) + " | " + Math.min(y1,y2));
+            dx = xend - xstart;
+            dy = yend - ystart;
 
+            incx = sgn(dx);
+            incy = sgn(dy);
 
-            for (int x = Math.min(x1,x2); x > Math.max(x1,x2);x++){
+            if (dx<0) dx = -dx;
+            if (dy<0) dy = -dy;
 
-                this.plot(x,y,g);
-                error = error + deltaError;
-                if (error >= 0.5){
-                    y = y+1;
-                    error -= 1;
-                }
+            if(dx>dy){
+                pdx = incx;
+                pdy = 0;
+                ddx = incx;
+                ddy = incy;
+                es = dx;
+                el = dy;
+            }else{
+                pdx = 0;
+                pdy = incy;
+                ddx = incx;
+                ddy = incy;
+                es = dx;
+                el = dy;
             }
 
-        }
+            x = xstart;
+            y = ystart;
 
+            err = el/2;
+            this.plot(x,y,g);
+
+            for (t=0;t<el;++t){
+                err -= es;
+                if(err<0){
+                    err += el;
+                    x += ddx;
+                    y += ddy;
+                }else{
+                    x += pdx;
+                    y += pdy;
+                }
+                this.plot(x,y,g);
+                System.out.println(x + " | " + y);
+            }
+        }
+    }
+
+    private int sgn(int x){
+        return (x>0) ? 1 : (x<0) ? -1 : 0;
     }
 
     private void plot(int bigX, int bigY, Graphics g){
