@@ -29,10 +29,14 @@ class TestPanel extends JPanel implements MouseListener {
         /*
         g.fillRect(x1,y1,SIZE,SIZE);
         g.fillRect(x2,y2,SIZE,SIZE);
+
+        System.out.println(bigToOne(oneToBig(x2)) + " <> " + x2);
+
+        if (true) return;
         */
 
-        this.plot(x1,y1,g);
-        this.plot(x2,y2,g);
+        this.plot(oneToBig(x1),oneToBig(y1),g);
+        this.plot(oneToBig(x2),oneToBig(y2),g);
 
         if (this.isP2Set()){
             int xstart = oneToBig(this.x1);
@@ -40,8 +44,6 @@ class TestPanel extends JPanel implements MouseListener {
             int xend = oneToBig(this.x2);
             int yend = oneToBig(this.y2);
             int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
-
-            System.out.println(xstart + " |t " + ystart + " j " + this.x1);
 
             dx = xend - xstart;
             dy = yend - ystart;
@@ -85,7 +87,6 @@ class TestPanel extends JPanel implements MouseListener {
                     y += pdy;
                 }
                 this.plot(x,y,g);
-                System.out.println(x + " | " + y);
             }
         }
     }
@@ -131,8 +132,8 @@ class TestPanel extends JPanel implements MouseListener {
         repaint();
     }
 
-    private boolean isP1Set(){ return x1 > 0; }
-    private boolean isP2Set(){ return x2 > 0; }
+    private boolean isP1Set(){ return x1 >= 0; }
+    private boolean isP2Set(){ return x2 >= 0; }
 
 
     /**
@@ -145,7 +146,10 @@ class TestPanel extends JPanel implements MouseListener {
     }
 
     public static int oneToBig(int n){
-        return clamp(n);
+        int r = n%SIZE;
+        if (r == 0) return n/SIZE;
+        if (r < SIZE/2) return n/SIZE + 1;
+        else return n/SIZE;
     }
 
     public static int clamp(int n){
