@@ -61,10 +61,6 @@ class TestPanel extends JPanel implements MouseListener {
         }
     }
 
-    private int sgn(int x){
-        return (x>0) ? 1 : (x<0) ? -1 : 0;
-    }
-
     private void plot(int bigX, int bigY, Graphics g){
         g.fillRect(bigToOne(bigX),bigToOne(bigY),SIZE, SIZE);
     }
