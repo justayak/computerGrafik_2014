@@ -26,15 +26,6 @@ class TestPanel extends JPanel implements MouseListener {
 
         g.setColor(Color.white);
 
-        /*
-        g.fillRect(x1,y1,SIZE,SIZE);
-        g.fillRect(x2,y2,SIZE,SIZE);
-
-        System.out.println(bigToOne(oneToBig(x2)) + " <> " + x2);
-
-        if (true) return;
-        */
-
         this.plot(oneToBig(x1),oneToBig(y1),g);
         this.plot(oneToBig(x2),oneToBig(y2),g);
 
@@ -43,50 +34,29 @@ class TestPanel extends JPanel implements MouseListener {
             int ystart = oneToBig(this.y1);
             int xend = oneToBig(this.x2);
             int yend = oneToBig(this.y2);
-            int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
+            bresenham(xstart,ystart,xend,yend,g);
+        }
+    }
 
-            dx = xend - xstart;
-            dy = yend - ystart;
+    void bresenham(int xStart,int yStart, int xEnd, int yEnd, Graphics g){
+        int dx = Math.abs(xEnd - xStart);
+        int sx = xStart<xEnd ? 1 : -1;
+        int dy = Math.abs(yEnd - yStart);
+        int sy = yStart<yEnd ? 1 : -1;
+        int err = (dx>dy ? dx : -dy)/2;
+        int e2;
 
-            incx = sgn(dx);
-            incy = sgn(dy);
-
-            if (dx<0) dx = -dx;
-            if (dy<0) dy = -dy;
-
-            if(dx>dy){
-                pdx = incx;
-                pdy = 0;
-                ddx = incx;
-                ddy = incy;
-                es = dx;
-                el = dy;
-            }else{
-                pdx = 0;
-                pdy = incy;
-                ddx = incx;
-                ddy = incy;
-                es = dx;
-                el = dy;
+        while(true){
+            this.plot(xStart,yStart,g);
+            if (xStart==xEnd && yStart==yEnd) break;
+            e2 = err;
+            if (e2 >-dx) {
+                err -= dy;
+                xStart += sx;
             }
-
-            x = xstart;
-            y = ystart;
-
-            err = el/2;
-            this.plot(x,y,g);
-
-            for (t=0;t<el;++t){
-                err -= es;
-                if(err<0){
-                    err += el;
-                    x += ddx;
-                    y += ddy;
-                }else{
-                    x += pdx;
-                    y += pdy;
-                }
-                this.plot(x,y,g);
+            if (e2 < dy) {
+                err += dx;
+                yStart += sy;
             }
         }
     }
