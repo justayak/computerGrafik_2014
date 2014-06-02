@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 class TestPanel extends JPanel implements MouseListener {
 
-    static final int SIZE = 16;
+    static final int SIZE = 4;
 
     int x1 = -100;
     int y1 = -100;
