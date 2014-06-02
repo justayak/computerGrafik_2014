@@ -8,17 +8,17 @@ import java.awt.*;
  */
 public class Window extends JPanel {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 800;
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 500;
     private static final int HALF_WIDTH = WIDTH / 2;
     private static final int HALF_HEIGHT = HEIGHT / 2;
 
-    int a = 42;
-    int b =8;
-    int c = 15;
-    int d = 23;
-    int e = 17;
-    int f = -4915;
+    int a =     42;
+    int b =     8;
+    int c =     15;
+    int d =     23;
+    int e =     17;
+    int f =     -4915;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
