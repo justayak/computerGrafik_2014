@@ -8,26 +8,28 @@ import java.awt.*;
  */
 public class Window extends JPanel {
 
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 800;
+    private static final int HALF_WIDTH = WIDTH / 2;
+    private static final int HALF_HEIGHT = HEIGHT / 2;
 
-    double a = 0.1;
-    double b = -0.4;
-    double c = 0.2;
-    double d = 0.54;
-    double e = 0.11;
-    double f = 0.09;
+    double a = -1;
+    double b = 0.1;
+    double c = 1;
+    double d = -0.75;
+    double e = 0.13;
+    double f = 0.5;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
         g.setColor(Color.DARK_GRAY);
 
-        for(int x = 0;x < WIDTH; x++ ){
-            for(int y = 0;y < HEIGHT; y++){
+        for(int x = -HALF_WIDTH;x < HALF_WIDTH; x++ ){
+            for(int y = -HALF_HEIGHT;y < HALF_HEIGHT; y++){
                 double v = a*x*x + b*x*y + c*y*y + d*x + e*y + f;
-                if (v <= 0){
-                    g.fillRect(x,y,1,1);
+                if (v >= 0){
+                    g.fillRect(x+HALF_WIDTH,y+HALF_HEIGHT,1,1);
                 }
             }
         }
