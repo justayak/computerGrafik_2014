@@ -27,8 +27,13 @@ public class Window extends JPanel {
 
         for(int x = -HALF_WIDTH;x < HALF_WIDTH; x++ ){
             for(int y = -HALF_HEIGHT;y < HALF_HEIGHT; y++){
-                double v = a*x*x + b*x*y + c*y*y + d*x + e*y + f;
-                if (v >= 0){
+                //double v = a*x*x + b*x*y + c*y*y + d*x + e*y + f;
+
+                double a = 250;
+                double b = 200;
+                double v = Math.ceil(((x*x) / (a*a)) + ((y*y)/(b*b)));
+
+                if (v  == 1){
                     g.fillRect(x+HALF_WIDTH,y+HALF_HEIGHT,1,1);
                 }
             }
