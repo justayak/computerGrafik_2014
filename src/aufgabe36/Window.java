@@ -38,6 +38,9 @@ public class Window extends JPanel {
 
                 //double v = (a*Math.pow(x,2)) + (b*x*y) + (c*Math.pow(y,2)) + (d*x) + (e*y) + f;
 
+                // http://www.alpertron.com.ar/METHODS.HTM
+                // http://en.wikipedia.org/wiki/Diophantine_equation
+
                 if (v  <= 0){
                     g.fillRect(x+HALF_WIDTH,y+HALF_HEIGHT,1,1);
                 }
