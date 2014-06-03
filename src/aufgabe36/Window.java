@@ -2,6 +2,8 @@ package aufgabe36;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Julian on 02.06.2014.
@@ -13,12 +15,12 @@ public class Window extends JPanel {
     private static final int HALF_WIDTH = WIDTH / 2;
     private static final int HALF_HEIGHT = HEIGHT / 2;
 
-    int a = 42;
-    int b =8;
-    int c = 15;
-    int d = 23;
-    int e = 17;
-    int f = -4915;
+    public static int a = 42;
+    public static int b =8;
+    public static int c = 15;
+    public static int d = 23;
+    public static int e = 17;
+    public static int f = -4915;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -44,6 +46,8 @@ public class Window extends JPanel {
 
     }
 
+    public static int CurrentValue = 1;
+
 
     // *******************************************
 
@@ -51,10 +55,84 @@ public class Window extends JPanel {
         JFrame frame = new JFrame("Elipse");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH,HEIGHT);
-        JPanel panel = new Window();
+        Window panel = new Window();
         frame.getContentPane().add(panel);
+
+        MenuBar bar = new MenuBar();
+        Menu up = new Menu("+");
+        up.add("a");
+        up.add("b");
+        up.add("c");
+        up.add("d");
+        up.add("e");
+        up.add("f");
+
+        Menu down = new Menu("-");
+        down.add("a");
+        down.add("b");
+        down.add("c");
+        down.add("d");
+        down.add("e");
+        down.add("f");
+
+        Menu set = new Menu("Value");
+
+        final MenuItem value = new MenuItem();
+        value.setLabel(""+CurrentValue);
+
+        set.add("Add 1");
+        set.add("Sub 1");
+        set.add(value);
+
+        set.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Add 1")){
+                        CurrentValue += 1;
+                }else if (e.getActionCommand().equals("Sub 1")) {
+                      CurrentValue -= 1;
+                }
+                value.setLabel(""+CurrentValue);
+            }
+        });
+
+        ParamsActionListener adder = new ParamsActionListener(true,panel);
+        ParamsActionListener subber = new ParamsActionListener(false,panel);
+
+        up.addActionListener(adder);
+        down.addActionListener(subber);
+
+        bar.add(up);
+        bar.add(down);
+        bar.add(set);
+        frame.setMenuBar(bar);
+
         frame.setVisible(true);
     }
 
     // *******************************************
+
+    private static class ParamsActionListener implements ActionListener{
+
+        private final boolean isAdd;
+        private final Window instance;
+
+        public ParamsActionListener(boolean isAdd, Window instance){
+            this.isAdd = isAdd;
+            this.instance = instance;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int value = Window.CurrentValue;
+            if (e.getActionCommand().equals("a")) Window.a = this.isAdd ? Window.a + value: Window.a - value;
+            else if (e.getActionCommand().equals("b")) Window.b = this.isAdd ? Window.b + value: Window.b - value;
+            else if (e.getActionCommand().equals("c")) Window.c = this.isAdd ? Window.c + value: Window.c - value;
+            else if (e.getActionCommand().equals("d")) Window.d = this.isAdd ? Window.d + value: Window.d - value;
+            else if (e.getActionCommand().equals("e")) Window.e = this.isAdd ? Window.e + value: Window.e - value;
+            else if (e.getActionCommand().equals("f")) Window.f = this.isAdd ? Window.f + value: Window.f - value;
+            this.instance.repaint();
+        }
+    }
+
 }
