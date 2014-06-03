@@ -8,8 +8,8 @@ import java.awt.*;
  */
 public class Window extends JPanel {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 800;
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 400;
     private static final int HALF_WIDTH = WIDTH / 2;
     private static final int HALF_HEIGHT = HEIGHT / 2;
 
@@ -23,12 +23,7 @@ public class Window extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        g.setColor(Color.DARK_GRAY);
-
-        double aQ = 250;
-        double bQ = 200;
-        double xM = -20;
-        double yM = -20;
+        g.setColor(Color.RED);
 
         for(int x = -HALF_WIDTH;x < HALF_WIDTH; x++ ){
             for(int y = -HALF_HEIGHT;y < HALF_HEIGHT; y++){
