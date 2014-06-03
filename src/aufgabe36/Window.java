@@ -27,6 +27,7 @@ public class Window extends JPanel {
 
         g.setColor(Color.RED);
 
+        // Der eigentliche Code
         for(int x = -HALF_WIDTH;x < HALF_WIDTH; x++ ){
             for(int y = -HALF_HEIGHT;y < HALF_HEIGHT; y++){
                 int v = a*x*x + b*x*y + c*y*y + d*x + e*y + f;
@@ -37,6 +38,10 @@ public class Window extends JPanel {
         }
 
     }
+
+    // *************************************************************
+    // Ab hier nur noch GUI-Krams. Also bitte ignorieren
+    // *************************************************************
 
     public static int CurrentValue = 1;
     public static MenuItem showA;
