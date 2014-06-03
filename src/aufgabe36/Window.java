@@ -10,17 +10,17 @@ import java.awt.event.ActionListener;
  */
 public class Window extends JPanel {
 
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 400;
-    private static final int HALF_WIDTH = WIDTH / 2;
-    private static final int HALF_HEIGHT = HEIGHT / 2;
+    private static final int WIDTH =                400;
+    private static final int HEIGHT =               400;
+    private static final int HALF_WIDTH =           WIDTH / 2;
+    private static final int HALF_HEIGHT =          HEIGHT / 2;
 
-    public static int a = 42;
-    public static int b =8;
-    public static int c = 15;
-    public static int d = 23;
-    public static int e = 17;
-    public static int f = -4915;
+    public static int a =                           42;
+    public static int b =                           8;
+    public static int c =                           15;
+    public static int d =                           23;
+    public static int e =                           17;
+    public static int f =                           -4915;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -29,15 +29,7 @@ public class Window extends JPanel {
 
         for(int x = -HALF_WIDTH;x < HALF_WIDTH; x++ ){
             for(int y = -HALF_HEIGHT;y < HALF_HEIGHT; y++){
-
                 int v = a*x*x + b*x*y + c*y*y + d*x + e*y + f;
-                //double v = Math.ceil((Math.pow(x-xM,2) / (a*a)) + (Math.pow(y-yM,2)/(b*b)));
-
-                //double v = (a*Math.pow(x,2)) + (b*x*y) + (c*Math.pow(y,2)) + (d*x) + (e*y) + f;
-
-                // http://www.alpertron.com.ar/METHODS.HTM
-                // http://en.wikipedia.org/wiki/Diophantine_equation
-
                 if (v  <= 0){
                     g.fillRect(x+HALF_WIDTH,y+HALF_HEIGHT,1,1);
                 }
@@ -47,7 +39,12 @@ public class Window extends JPanel {
     }
 
     public static int CurrentValue = 1;
-
+    public static MenuItem showA;
+    public static MenuItem showB;
+    public static MenuItem showC;
+    public static MenuItem showD;
+    public static MenuItem showE;
+    public static MenuItem showF;
 
     // *******************************************
 
@@ -96,6 +93,13 @@ public class Window extends JPanel {
             }
         });
 
+        showA = new MenuItem();showA.setLabel("a: " + Window.a);set.add(showA);
+        showB = new MenuItem();showB.setLabel("b: " + Window.b);set.add(showB);
+        showC = new MenuItem();showC.setLabel("c: " + Window.c);set.add(showC);
+        showD = new MenuItem();showD.setLabel("d: " + Window.d);set.add(showD);
+        showE = new MenuItem();showE.setLabel("e: " + Window.e);set.add(showE);
+        showF = new MenuItem();showF.setLabel("f: " + Window.f);set.add(showF);
+
         ParamsActionListener adder = new ParamsActionListener(true,panel);
         ParamsActionListener subber = new ParamsActionListener(false,panel);
 
@@ -132,6 +136,12 @@ public class Window extends JPanel {
             else if (e.getActionCommand().equals("e")) Window.e = this.isAdd ? Window.e + value: Window.e - value;
             else if (e.getActionCommand().equals("f")) Window.f = this.isAdd ? Window.f + value: Window.f - value;
             this.instance.repaint();
+            showA.setLabel("a: " + Window.a);
+            showB.setLabel("b: " + Window.b);
+            showC.setLabel("c: " + Window.c);
+            showD.setLabel("d: " + Window.d);
+            showE.setLabel("e: " + Window.e);
+            showF.setLabel("f: " + Window.f);
         }
     }
 
