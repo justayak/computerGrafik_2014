@@ -26,7 +26,11 @@ public class FaceSphere {
 
 
     public void render(Graphics g){
-
+        for(Face face : this.faces){
+            Scene.draw(g,(int)face.A.x, (int)face.A.y, 255,0,0);
+            Scene.draw(g,(int)face.B.x, (int)face.B.y, 0,255,0);
+            Scene.draw(g,(int)face.C.x, (int)face.C.y, 0,0,255);
+        }
     }
 
 }

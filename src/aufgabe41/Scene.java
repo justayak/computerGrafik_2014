@@ -31,6 +31,7 @@ public class Scene {
         g.drawRect(0,0,this.width,this.height);
 
 
+
        for (int x = 0; x < this.width; x++){
            for(int y = 0; y < this.height; y++){
 
@@ -43,9 +44,9 @@ public class Scene {
     }
 
 
-    private void draw(Graphics g, int x, int y, int R, int G, int B){
+    public static void draw(Graphics g, int x, int y, int R, int G, int B){
         g.setColor(new Color(R,G,B));
-        g.drawRect(x,y,10,10);
+        g.drawRect(x,y,2,2);
     }
 
 

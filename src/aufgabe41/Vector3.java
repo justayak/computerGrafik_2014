@@ -77,7 +77,7 @@ public class Vector3 {
     }
     
     public Vector3 multiply(double scalar){
-    	return new Vector(this.x * scalar, this.y * scalar, this.z * scalar);
+    	return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
     }
 
     @Override
