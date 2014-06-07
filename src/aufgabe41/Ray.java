@@ -32,6 +32,11 @@ public class Ray {
 		this.direction = direction.normalize();
 	}
 	
+	public Ray(int x, int y){
+		this.source = new Vector3(x,y,0);
+		this.direction = new Vector3(0,0,1);
+	}
+	
 	public Vector3 pointAt(double length){
 		return source.add(direction.multiply(length));
 		
