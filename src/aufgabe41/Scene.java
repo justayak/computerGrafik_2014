@@ -39,7 +39,15 @@ public class Scene {
                         double R = ambient.intensityR(Vector3.Null(),Vector3.Null(),s.KR);
                         double G = ambient.intensityR(Vector3.Null(),Vector3.Null(),s.KG);
                         double B = ambient.intensityR(Vector3.Null(),Vector3.Null(),s.KB);
+
+                        for (Light light : this.lights){
+
+                            //Ray r = new Ray(s.position)
+
+                        }
+
                         draw(g,x,y,R,G,B);
+
                     }
                 }
 
