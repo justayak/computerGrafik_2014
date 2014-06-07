@@ -1,7 +1,5 @@
 package aufgabe41;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
 import java.awt.*;
 
 /**
@@ -15,11 +13,11 @@ public class Scene {
         new Sphere(new Vector3(10.0, 20.0, 30.0), 20)
     };
 
-    private final Light[] lights = new Light[]{
+    private final LightOld[] lights = new LightOld[]{
 
     };
 
-    private final Light ambient = new Light(255,0,0);
+    private final LightOld ambient = new LightOld(255,0,0);
 
     private final int height;
     private final int width;
