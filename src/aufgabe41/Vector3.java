@@ -67,6 +67,18 @@ public class Vector3 {
     public double cosTheta(Vector3 v){
         return (this.multiply(v) / (this.weight * v.weight));
     }
+    
+    public double lengthSquared(){
+    	return (this.x * this.x) + (this.y * this.y) + (this.z * this.z);
+    }
+    
+    public double length(){
+    	return Math.sqrt(this.lengthSquared());
+    }
+    
+    public Vector3 multiply(double scalar){
+    	return new Vector(this.x * scalar, this.y * scalar, this.z * scalar);
+    }
 
     @Override
     public String toString(){
