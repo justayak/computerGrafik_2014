@@ -30,16 +30,14 @@ public class Scene {
         g.setColor(Color.BLACK);
         g.drawRect(0,0,this.width,this.height);
 
+        for (int x = 0; x < this.width; x++){
+            for (int y = 0; y < this.height; y++){
 
 
-       for (int x = 0; x < this.width; x++){
-           for(int y = 0; y < this.height; y++){
 
-               //TODO our code!
+            }
+        }
 
-
-           }
-       }
 
     }
 
