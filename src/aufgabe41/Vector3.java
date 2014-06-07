@@ -27,9 +27,9 @@ public class Vector3 {
     }
 
     public Vector3 cross(Vector3 v){
-        double x = (this.y*v.z) - (this.z*v.y);
-        double y = (this.z*v.x) - (this.x*v.z);
-        double z = (this.x-v.y) - (this.y*v.x);
+        final double x = (this.y*v.z) - (this.z*v.y);
+        final double y = (this.z*v.x) - (this.x*v.z);
+        final double z = (this.x-v.y) - (this.y*v.x);
         return new Vector3(x,y,z);
     }
 
