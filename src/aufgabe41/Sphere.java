@@ -1,5 +1,10 @@
 package aufgabe41;
 
+import java.util.Arrays;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.min;
+
 
 /**
  * Created by Julian on 07.06.2014.
@@ -19,12 +24,17 @@ public class Sphere {
     	}
     	Vector3 posToSource = ray.source.subtract(position);
     	double[] hits = Utils.pq(p(posToSource, ray), q(posToSource));
+    	System.out.println(Arrays.toString(hits));
     	if(hits.length == 0){
     		return null;
     	} else if(hits.length == 1){
     		return ray.pointAt(hits[0]);
     	} else {
-    		return ray.pointAt(Math.min(hits[0], hits[1]));
+    		if(abs(hits[0]) < abs(hits[1])){
+    			return ray.pointAt(hits[0]);
+    		} else {
+    			return ray.pointAt(hits[1]);
+    		}
     	}
     	
     }
