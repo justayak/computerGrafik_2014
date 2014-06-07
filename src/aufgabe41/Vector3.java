@@ -68,4 +68,9 @@ public class Vector3 {
         return (this.multiply(v) / (this.weight * v.weight));
     }
 
+    @Override
+    public String toString(){
+        return "{" + this.x + "|" + this.y + "|" + this.z + "}";
+    }
+
 }
