@@ -33,6 +33,10 @@ public class Vector3 {
         return new Vector3(x,y,z);
     }
 
+    public boolean equals(Vector3 v){
+        return (this.x == v.x && this.y == v.y && this.z == v.z);
+    }
+
     public Vector3 normalize(){
         return new Vector3(this.x/this.weight, this.y/this.weight, this.z/this.weight);
     }
