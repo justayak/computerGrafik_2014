@@ -11,8 +11,14 @@ public class FaceSphere {
 
     public FaceSphere(Vector3 position, double radius){
         this.faces = new LinkedList<Face>(); // Ikosaeder
-        //double phi = (1.0/radius) * (1 + Math.sqrt(5));
         double halfRadius = radius / 2;
+
+        this.faces.add(new Face(
+                new Vector3(position.x, position.y + halfRadius, position.z),
+                new Vector3(position.x + halfRadius, position.y, position.z - halfRadius),
+                new Vector3(position.x - halfRadius, position.y, position.z - halfRadius)
+        ));
+
 
     }
 
