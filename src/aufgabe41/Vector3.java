@@ -58,11 +58,14 @@ public class Vector3 {
     }
     
     public double distance(Vector3 v){
-    	double xSquare = (v.x - x) * (v.x - x);
-    	double ySquare = (v.y - y) * (v.y - y);
-    	double zSquare = (v.z - z) * (v.z - z);
-    	
+        final double xSquare = (v.x - x) * (v.x - x);
+        final double ySquare = (v.y - y) * (v.y - y);
+    	final double zSquare = (v.z - z) * (v.z - z);
     	return Math.sqrt(xSquare + ySquare + zSquare); 
+    }
+
+    public double cosTheta(Vector3 v){
+        return (this.multiply(v) / (this.weight * v.weight));
     }
 
 }

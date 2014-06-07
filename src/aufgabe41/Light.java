@@ -5,8 +5,8 @@ package aufgabe41;
  */
 public interface Light {
 
-    double intensityR(Vector3 position, double K);
-    double intensityG(Vector3 position, double K);
-    double intensityB(Vector3 position, double K);
+    double intensityR(Vector3 position, Vector3 normal, double K);
+    double intensityG(Vector3 position, Vector3 normal, double K);
+    double intensityB(Vector3 position, Vector3 normal, double K);
 
 }

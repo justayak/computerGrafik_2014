@@ -4,9 +4,9 @@ package aufgabe41;
  * Created by Julian on 07.06.2014.
  */
 public class DiffuseLight implements Light {
-    private static final double c0 = 10;
-    private static final double c1 = 15.1;
-    private static final double c2 = 1.2;
+    private static final double c0 = 0.5;
+    private static final double c1 = 0.1;
+    private static final double c2 = 0.2;
 
     public final Vector3 position;
     public final double LR;
@@ -19,17 +19,23 @@ public class DiffuseLight implements Light {
     }
 
     @Override
-    public double intensityR(Vector3 position, double K) {
-        return 0;
+    public double intensityR(Vector3 position, Vector3 normal, double K) {
+        return this.intensity(this.LR, position, normal, K);
     }
 
     @Override
-    public double intensityG(Vector3 position, double K) {
-        return 0;
+    public double intensityG(Vector3 position, Vector3 normal, double K) {
+        return this.intensity(this.LG, position, normal, K);
     }
 
     @Override
-    public double intensityB(Vector3 position, double K) {
-        return 0;
+    public double intensityB(Vector3 position, Vector3 normal, double K) {
+        return this.intensity(this.LB, position, normal, K);
+    }
+
+    private double intensity(double L, Vector3 position, Vector3 normal, double K){
+        final Vector3 lightToPosition = this.position.subtract(position);
+        final double r = this.position.distance(position);
+        return lightToPosition.cosTheta(normal) * (1 / (c0+c1*r+c2*r*r)) * L * K;
     }
 }
