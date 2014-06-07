@@ -22,9 +22,11 @@ public class Sphere {
     	if(hits.length == 0){
     		return null;
     	} else if(hits.length == 1){
-
+    		return ray.pointAt(hits[0]);
+    	} else {
+    		return ray.pointAt(Math.min(hits[0], hits[1]));
     	}
-    	return null;
+    	
     }
     
     private double p(Vector3 posToSource, Ray ray){
