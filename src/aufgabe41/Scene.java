@@ -17,7 +17,7 @@ public class Scene {
         new DiffuseLight(new Vector3(200,800,400), 0.8, 0.8,0.7)
     };
 
-    private final AmbientLight ambient = new AmbientLight(0.9,0.9,0.9);
+    private final AmbientLight ambient = new AmbientLight(0.2,0.2,0.2);
 
     private final int height;
     private final int width;
@@ -42,11 +42,18 @@ public class Scene {
 
                         for (Light light : this.lights){
 
-                            //Ray r = new Ray(s.position)
+                            Ray r = new Ray(x,y);
+                            Vector3 pos = s.intersection(r);
+                            Vector3 n = s.position.subtract(pos).normalize();
+
+                            R = R + light.intensityB(pos,n,s.KR);
+                            G = G + light.intensityG(pos,n,s.KG);
+                            B = B + light.intensityB(pos,n,s.KB);
+
 
                         }
 
-                        draw(g,x,y,R,G,B);
+                        draw(g,x,y,Math.min(R,1),Math.min(G,1),Math.min(B,1));
 
                     }
                 }

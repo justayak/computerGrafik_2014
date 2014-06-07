@@ -25,7 +25,6 @@ public class Sphere {
     	}
     	Vector3 posToSource = ray.source.subtract(position);
     	double[] hits = Utils.pq(p(posToSource, ray), q(posToSource));
-    	System.out.println(Arrays.toString(hits));
     	if(hits.length == 0){
     		return null;
     	} else if(hits.length == 1){
