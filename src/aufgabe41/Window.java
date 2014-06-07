@@ -12,7 +12,8 @@ public class Window extends JPanel {
     public static final int HEIGHT = 500;
 
     public void paintComponent(Graphics g){
-
+        Scene s = new Scene(WIDTH, HEIGHT);
+        s.render(g);
     }
 
 
