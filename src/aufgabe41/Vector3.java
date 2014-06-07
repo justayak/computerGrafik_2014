@@ -22,6 +22,10 @@ public class Vector3 {
         return new Vector3(this.x - v.x, this.y - v.y, this.z - v.z);
     }
 
+    public double multiply(Vector3 v){
+        return (this.x * v.x) + (this.y + v.y) + (this.z * v.z);
+    }
+
     public Vector3 cross(Vector3 v){
         double x = (this.y*v.z) - (this.z*v.y);
         double y = (this.z*v.x) - (this.x*v.z);
