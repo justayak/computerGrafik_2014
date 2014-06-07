@@ -56,5 +56,13 @@ public class Vector3 {
     public static Vector3 Z(){
         return new Vector3(0,0,1);
     }
+    
+    public double distance(Vector3 v){
+    	double xSquare = (v.x - x) * (v.x - x);
+    	double ySquare = (v.y - y) * (v.y - y);
+    	double zSquare = (v.z - z) * (v.z - z);
+    	
+    	return Math.sqrt(xSquare + ySquare + zSquare); 
+    }
 
 }
