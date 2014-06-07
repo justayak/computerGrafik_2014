@@ -15,12 +15,19 @@ public class Window extends JPanel {
     private static final int HALF_WIDTH =           WIDTH / 2;
     private static final int HALF_HEIGHT =          HEIGHT / 2;
 
-    public static int a =                           42;
+    /*public static int a =                           42;
     public static int b =                           8;
     public static int c =                           15;
     public static int d =                           23;
-    public static int e =                           17;
-    public static int f =                           -4915;
+    public static int e =                           17;18
+    public static int f =                           -4915;*/
+
+    public static int a =                           8;
+    public static int b =                           24;
+    public static int c =                           18;
+    public static int d =                           5;
+    public static int e =                           7;
+    public static int f =                           16;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -43,7 +50,7 @@ public class Window extends JPanel {
     // Ab hier nur noch GUI-Krams. Also bitte ignorieren
     // *************************************************************
 
-    public static int CurrentValue = 1;
+    public static int CurrentValue = 100;
     public static MenuItem showA;
     public static MenuItem showB;
     public static MenuItem showC;
