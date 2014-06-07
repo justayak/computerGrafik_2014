@@ -14,7 +14,7 @@ public class Scene {
     };
 
     private final DiffuseLight[] lights = new DiffuseLight[]{
-
+        new DiffuseLight(new Vector3(200,800,400), 0.8, 0.8,0.7)
     };
 
     private final AmbientLight ambient = new AmbientLight(0.3,0.3,0.3);
@@ -31,23 +31,22 @@ public class Scene {
         g.drawRect(0,0,this.width,this.height);
 
 
-        FaceSphere f = new FaceSphere(new Vector3(100,100,100), 101);
 
-        for(Face face : f.faces){
-            draw(g,(int)face.A.x, (int)face.A.y,255,0,0);
-            draw(g,(int)face.B.x, (int)face.B.y,255,0,0);
-            draw(g,(int)face.C.x, (int)face.C.y,255,0,0);
-            System.out.println(face.A + " _ " + face.B + " _ " + face.C);
-        }
+       for (int x = 0; x < this.width; x++){
+           for(int y = 0; y < this.height; y++){
+
+               //TODO our code!
 
 
+           }
+       }
 
     }
 
 
-    private void draw(Graphics g, int x, int y, int R, int G, int B){
+    public static void draw(Graphics g, int x, int y, int R, int G, int B){
         g.setColor(new Color(R,G,B));
-        g.drawRect(x,y,10,10);
+        g.drawRect(x,y,2,2);
     }
 
 
