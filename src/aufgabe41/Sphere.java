@@ -14,7 +14,9 @@ public class Sphere {
     }
     
     public Vector3 intersection(Ray ray){
-    	
+    	if(ray.source.distance(position) < radius){
+    		return null;
+    	}
     	return null;
     }
 
