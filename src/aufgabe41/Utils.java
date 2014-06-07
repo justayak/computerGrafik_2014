@@ -39,7 +39,7 @@ public class Utils {
 			return new double[]{-p2};
 		}
 		
-		return new double[]{p2 - Math.sqrt(radicant), p2 + Math.sqrt(radicant)};
+		return new double[]{ -p2 - Math.sqrt(radicant), -p2 + Math.sqrt(radicant)};
 	}
 
 }
