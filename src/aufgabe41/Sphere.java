@@ -17,8 +17,13 @@ public class Sphere {
     	if(ray.source.distance(position) < radius){
     		return null;
     	}
-    	
-    	
+    	Vector3 posToSource = ray.source.subtract(position);
+    	double[] hits = Utils.pq(p(posToSource, ray), q(posToSource));
+    	if(hits.length == 0){
+    		return null;
+    	} else if(hits.length == 1){
+
+    	}
     	return null;
     }
     
@@ -27,7 +32,7 @@ public class Sphere {
     }
     
     private double q(Vector3 posToSource){
-    	
+    	return posToSource.lengthSquared() - (radius*radius); 
     }
 
 
