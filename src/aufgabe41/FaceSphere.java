@@ -1,5 +1,6 @@
 package aufgabe41;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -14,11 +15,17 @@ public class FaceSphere {
         double halfRadius = radius / 2;
 
         this.faces.add(new Face(
-                new Vector3(position.x, position.y + halfRadius, position.z),
+                new Vector3(position.x, position.y - halfRadius, position.z),
                 new Vector3(position.x + halfRadius, position.y, position.z - halfRadius),
                 new Vector3(position.x - halfRadius, position.y, position.z - halfRadius)
         ));
 
+
+
+    }
+
+
+    public void render(Graphics g){
 
     }
 
