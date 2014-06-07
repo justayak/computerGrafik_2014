@@ -1,5 +1,6 @@
 package aufgabe41;
 
+import java.awt.*;
 import java.util.Arrays;
 
 import static java.lang.Math.abs;
@@ -47,5 +48,23 @@ public class Sphere {
     	return posToSource.lengthSquared() - (radius*radius); 
     }
 
+
+    public boolean test(int x, int y){
+        Vector3 testVector = new Vector3(x,y,this.position.z);
+        return testVector.distance(this.position) < this.radius;
+    }
+
+    public double KR = 1;
+    public double KG = 0.9;
+    public double KB = 0.1;
+
+    public void render(Graphics g, AmbientLight ambient, Light[] lights){
+
+
+
+
+
+
+    }
 
 }
