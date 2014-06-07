@@ -12,6 +12,11 @@ public class Sphere {
     public Sphere(Vector3 position, int radius){
         this.position = position;this.radius = radius;
     }
+    
+    public Vector3 intersection(Ray ray){
+    	
+    	return null;
+    }
 
 
 }
