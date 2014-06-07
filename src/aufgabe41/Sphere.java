@@ -17,7 +17,17 @@ public class Sphere {
     	if(ray.source.distance(position) < radius){
     		return null;
     	}
+    	
+    	
     	return null;
+    }
+    
+    private double p(Vector3 posToSource, Ray ray){
+    	return 2*(posToSource.x*ray.direction.x + posToSource.y*ray.direction.y + posToSource.z*ray.direction.z);
+    }
+    
+    private double q(Vector3 posToSource){
+    	
     }
 
 
