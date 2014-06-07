@@ -1,5 +1,8 @@
 package aufgabe41;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
  * Created by Julian on 07.06.2014.
  */
@@ -110,6 +113,15 @@ public class Matrix3x3 {
 	}
 	
 	
-	
+	public String toString(){
+		NumberFormat nf = new DecimalFormat("0.000");
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("|").append(nf.format(v0[0])).append(", ").append(nf.format(v1[0])).append(", ").append(nf.format(v2[0])).append("|\n");
+		builder.append("|").append(nf.format(v0[1])).append(", ").append(nf.format(v1[1])).append(", ").append(nf.format(v2[1])).append("|\n");
+		builder.append("|").append(nf.format(v0[2])).append(", ").append(nf.format(v1[2])).append(", ").append(nf.format(v2[2])).append("|\n");
+		return builder.toString();
+
+	}
 	
 }
