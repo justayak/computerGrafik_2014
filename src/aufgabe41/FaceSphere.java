@@ -3,6 +3,8 @@ package aufgabe41;
 import java.awt.*;
 import java.util.LinkedList;
 
+import aufgabe41.phong.Scene;
+
 /**
  * Created by Julian on 07.06.2014.
  */
