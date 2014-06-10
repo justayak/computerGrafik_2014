@@ -7,6 +7,10 @@ import aufgabe41.Vector3;
  * Created by Julian on 10.06.2014.
  */
 public class DiffuseLight implements Light {
+	
+	double C_0 = 0.001;
+	double C_1 = 0.00002;
+	double C_2 = 0.00004;
 
     private final Vector3 p, c;
 
@@ -30,22 +34,30 @@ public class DiffuseLight implements Light {
      * @return Intensity (RGB)
      */
     public Vector3 intensity(Vector3 P, Vector3 N, Vector3 V, Vector3 K) {
+    	N = N.normalize();
+    	V = V.normalize();
         Vector3 L = this.p.subtract(P);
-        N.normalize();
-        V.normalize();
-        Vector3 R = L.reflect(N);
-        double diffuseLight = N.multiply(L);
-        double specularLight = V.multiply(R);
-        double cosTheta = N.cosTheta(L);
-        double a = 0.001;
-        double b = 0.00002;
-        double c = 0.00004;
-        double r = this.position().distance(P);
-        double f = cosTheta * (1 / (a + b * r + c * r * r));
-        double RED = Utils.clamp(f * this.color().x * K.x, 0, 1);
-        double GREEN = Utils.clamp(f * this.color().y * K.y, 0, 1);
-        double BLUE = Utils.clamp(f * this.color().z * K.z, 0, 1);
+        double f = f(this.position().distance(P));
+        Vector3 diff = diffuse(f, L, N, K);
+        Vector3 spec = specular();
+        double RED = Utils.clamp(diff.x + spec.x);
+        double GREEN = Utils.clamp(diff.y + spec.y);
+        double BLUE = Utils.clamp(diff.z + spec.z);
         return new Vector3(RED, GREEN, BLUE);
+    }
+    
+    private Vector3 diffuse(double f, Vector3 L, Vector3 N, Vector3 K){
+    	double cosTheta = L.cosTheta(N);
+    	f = f * cosTheta;
+    	return new Vector3(f * this.color().x * K.x, f * this.color().y * K.y, f * this.color().z * K.z);
+    }
+    
+    private Vector3 specular(){
+    	return Vector3.Null();
+    }
+    
+    private double f(double r){
+    	return 1/(C_0 + C_1 * r + C_2 * r * r);
     }
 
     @Override
