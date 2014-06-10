@@ -18,7 +18,7 @@ public class LightModel {
 	
 
 	public void update(FieldSet[] fieldsets){
-		lights = new LinkedList<>();
+		lights = new LinkedList<DiffuseLight>();
 		for(FieldSet fieldset : fieldsets){
 			if(fieldset.activatedCheck.isSelected()){
 				lights.add(new DiffuseLight(
