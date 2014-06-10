@@ -36,7 +36,6 @@ public class Sphere {
     			return ray.pointAt(hits[1]);
     		}
     	}
-    	
     }
     
     private double p(Vector3 posToSource, Ray ray){

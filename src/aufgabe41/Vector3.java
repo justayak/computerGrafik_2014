@@ -100,4 +100,14 @@ public class Vector3 {
         return "{" + this.x + "|" + this.y + "|" + this.z + "}";
     }
 
+    public static boolean isBetween(Vector3 V, Vector3 A, Vector3 B){
+        double maxX = Math.max(A.x,B.x);
+        double maxY = Math.max(A.y,B.y);
+        double maxZ = Math.max(A.z,B.z);
+        double minX = Math.min(A.x,B.x);
+        double minY = Math.min(A.y,B.y);
+        double minZ = Math.min(A.z,B.z);
+        return (V.x >= minX && V.x <= maxX) && (V.y >= minY && V.y <= maxY) && (V.z >= minZ && V.z <= maxZ);
+    }
+
 }

@@ -10,21 +10,21 @@ import java.awt.*;
 public class Scene {
 
     private final Sphere[] ELEMENTS = new Sphere[]{
-        new Sphere(new Vector3(105,155,10),40),
-        new Sphere(new Vector3(205,155,10),40),
-        new Sphere(new Vector3(305,155,10),40),
-        new Sphere(new Vector3(405,155,10),40),
-        new Sphere(new Vector3(505,155,10),40)
+        new Sphere(new Vector3(105,165,10),40),
+        new Sphere(new Vector3(205,165,10),40),
+        new Sphere(new Vector3(305,165,10),40),
+        new Sphere(new Vector3(405,165,10),40),
+        new Sphere(new Vector3(505,165,10),40)
 
-        /*,new Sphere(new Vector3(105,155,120),40),
-        new Sphere(new Vector3(205,155,120),40),
-        new Sphere(new Vector3(305,155,120),40),
-        new Sphere(new Vector3(405,155,120),40),
-        new Sphere(new Vector3(505,155,120),40)*/
+        ,new Sphere(new Vector3(115,150,120),40),
+        new Sphere(new Vector3(215,150,120),40),
+        new Sphere(new Vector3(315,150,120),40),
+        new Sphere(new Vector3(415,150,120),40),
+        new Sphere(new Vector3(515,150,120),40)
     };
 
     private final DiffuseLight[] lights = new DiffuseLight[]{
-        new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.2,0.2,.2)),
+        new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.6,0.2,.2)),
         new DiffuseLight(new Vector3(200,0,-100),new Vector3(0.3,0.3,.3)),
         new DiffuseLight(new Vector3(600,200,-100),new Vector3(0.3,0.3,.3))
     };
@@ -43,10 +43,10 @@ public class Scene {
         g.fillRect(0,0,this.W, this.H);
 
         for (DiffuseLight l : this.lights){
-            l.ZBuffer = new ZBuffer(l.position(),ELEMENTS);
+            l.ZBuffer = new ZBuffer(l.position(),ELEMENTS, this.W, this.H);
         }
 
-        ZBuffer view = new ZBuffer(ELEMENTS);
+        ZBuffer view = new ZBuffer(ELEMENTS,this.W, this.H);
 
         Vector3 V = new Vector3(0,0,1);
 
@@ -59,16 +59,21 @@ public class Scene {
                         Vector3[] NORMAL_POSITION = s.normal(x,y);
                         Vector3 N = NORMAL_POSITION[0];
                         Vector3 P = NORMAL_POSITION[1];
-                        Vector3 I = Vector3.Null();
-                        for (DiffuseLight d : this.lights){
 
-                            I = I.add(d.intensity(P,N,V,s.K));
+                        if (view.isVisibleAt(x,y,s)){
+                            Vector3 I = Vector3.Null();
+                            for (DiffuseLight d : this.lights){
+
+                                I = I.add(d.intensity(P,N,V,s.K));
 
 
 
+                            }
+
+                            draw(g,x,y,I.x,I.y,I.z);
                         }
 
-                        draw(g,x,y,I.x,I.y,I.z);
+
 
                     }
 
