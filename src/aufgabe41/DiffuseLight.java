@@ -36,7 +36,11 @@ public class DiffuseLight implements Light {
     private double intensity(double L, Vector3 position, Vector3 normal, double K){
         final Vector3 lightToPosition = this.position.subtract(position);
         final double r = this.position.distance(position);
-        System.out.println((1 / (c0+c1*r+c2*r*r)));
-        return lightToPosition.cosTheta(normal) * (1 / r) * L * K;
+        //System.out.println((1 / (c0+c1*r+c2*r*r)));
+        //return lightToPosition.cosTheta(normal) * (1 / r) * L * K;
+
+        final double cosTheta = normal.multiply(lightToPosition);
+        return cosTheta * (1 / r) * L * K;
+
     }
 }

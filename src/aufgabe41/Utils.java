@@ -42,4 +42,11 @@ public class Utils {
 		return new double[]{ -p2 - Math.sqrt(radicant), -p2 + Math.sqrt(radicant)};
 	}
 
+
+    public static double clamp(double v, double min, double max){
+        if (v > max) return max;
+        if (v < min) return min;
+        return min;
+    }
+
 }

@@ -64,6 +64,21 @@ public class Vector3 {
     	return Math.sqrt(xSquare + ySquare + zSquare); 
     }
 
+    public Vector3 scaleAdd(final Vector3 V, final double scale){
+        return new Vector3(
+            scale * V.x,
+            scale * V.y,
+            scale * V.z
+        );
+    }
+
+    public Vector3 reflect(Vector3 N){
+        N = N.normalize();
+        return this.scaleAdd(N,-2 * (this.multiply(N))).normalize();
+
+
+    }
+
     public double cosTheta(Vector3 v){
         return (this.multiply(v) / (this.weight * v.weight));
     }

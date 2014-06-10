@@ -10,11 +10,12 @@ public class Scene {
     private final Vector3 camera = Vector3.Null();
 
     private final Sphere[] elements = new Sphere[]{
-        new Sphere(new Vector3(86.0, 60.0, 30.0), 20)
+        new Sphere(new Vector3(100, 100, 100.0), 30)
+
     };
 
     private final DiffuseLight[] lights = new DiffuseLight[]{
-        new DiffuseLight(new Vector3(200,800,400), 0.8, 0.8,0.7)
+        new DiffuseLight(new Vector3(200,800,400), 0.8, 0.8,0.8)
     };
 
     private final AmbientLight ambient = new AmbientLight(0.2,0.2,0.2);

@@ -54,7 +54,7 @@ public class Sphere {
     }
 
     public double KR = 1;
-    public double KG = 0.9;
+    public double KG = 0.1;
     public double KB = 0.1;
 
     public void render(Graphics g, AmbientLight ambient, Light[] lights){
