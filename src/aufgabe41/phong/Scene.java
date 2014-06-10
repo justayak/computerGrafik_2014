@@ -81,19 +81,13 @@ public class Scene {
 					if (s.test(x, y)) {
 						Vector3 P = s.intersection(new Ray(x, y));
 						if (P != null) {
-							
+
 							Vector3 N = P.subtract(s.position);
-							//
-							// Vector3[] NORMAL_POSITION = s.normal(x,y);
-							// Vector3 N = NORMAL_POSITION[0];
-							// Vector3 P = NORMAL_POSITION[1];
 
 							if (view.isVisibleAt(x, y, s)) {
 								Vector3 I = Vector3.Null();
 								for (DiffuseLight d : this.lights) {
-
 									I = I.add(d.intensity(P, N, V, s.K, s.k_sp));
-
 								}
 
                                 I = I.add(ambient.intensity(s.K));
