@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class LightModel {
-	protected List<DiffuseLight> lights = Collections.singletonList(new DiffuseLight(Vector3.Null(), 1,1,1));
+	public List<DiffuseLight> lights = Collections.singletonList(new DiffuseLight(Vector3.Null(), 1,1,1));
 	
 
 	public void update(FieldSet[] fieldsets){

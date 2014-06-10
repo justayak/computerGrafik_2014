@@ -23,7 +23,7 @@ public class Scene {
         new Sphere(new Vector3(515,150,120),40)
     };
 
-    private final DiffuseLight[] lights = new DiffuseLight[]{
+    protected DiffuseLight[] lights = new DiffuseLight[]{
         new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.6,0.2,.2)),
         new DiffuseLight(new Vector3(200,0,-100),new Vector3(0.3,0.3,.3)),
         new DiffuseLight(new Vector3(600,200,-100),new Vector3(0.3,0.3,.3))
