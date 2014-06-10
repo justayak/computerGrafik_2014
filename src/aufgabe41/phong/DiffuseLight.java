@@ -37,9 +37,9 @@ public class DiffuseLight implements Light {
         double diffuseLight = N.multiply(L);
         double specularLight = V.multiply(R);
         double cosTheta = N.cosTheta(L);
-        double a = 0.001;
+        double a = 0.00002;
         double b = 0.00002;
-        double c = 0.00004;
+        double c = 0.00002;
         double r = this.position().distance(P);
         double f = cosTheta * (1 / (a + b * r + c * r * r));
         double RED = Utils.clamp(f * this.color().x * K.x, 0, 1);
