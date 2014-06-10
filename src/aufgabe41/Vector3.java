@@ -1,5 +1,6 @@
 package aufgabe41;
 
+import static java.lang.Math.abs;
 /**
  * Created by Julian on 07.06.2014.
  */
@@ -8,6 +9,8 @@ public class Vector3 {
     public final double y;
     public final double z;
     public final double weight;
+    
+    private static final double eps = 0.000001;
 
     public Vector3(double x, double y, double z){
         this.x = x;this.y = y;this.z = z;
@@ -80,7 +83,7 @@ public class Vector3 {
     }
 
     public double cosTheta(Vector3 v){
-        return Math.abs(this.multiply(v) / (this.weight * v.weight));
+        return this.multiply(v) / (this.weight * v.weight);
     }
     
     public double lengthSquared(){
@@ -93,6 +96,11 @@ public class Vector3 {
     
     public Vector3 multiply(double scalar){
     	return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
+    }
+    
+    
+    public boolean veryClose(Vector3 v){
+    	return this.distance(v) < eps;
     }
 
     @Override
@@ -109,5 +117,7 @@ public class Vector3 {
         double minZ = Math.min(A.z,B.z);
         return (V.x >= minX && V.x <= maxX) && (V.y >= minY && V.y <= maxY) && (V.z >= minZ && V.z <= maxZ);
     }
+    
+    
 
 }

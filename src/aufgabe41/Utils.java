@@ -48,5 +48,9 @@ public class Utils {
         if (v < min) return min;
         return v;
     }
+    
+    public static double clamp(double v){
+    	return clamp(v, 0, 1);
+    }
 
 }

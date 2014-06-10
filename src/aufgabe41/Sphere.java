@@ -19,12 +19,15 @@ public class Sphere {
         this.position = position;this.radius = radius;
     }
     
-    public Vector3 intersection(Ray ray){
+    public Vector3 intersection(Ray ray, boolean acceptNegative){
     	if(ray.source.distance(position) < radius){
     		return null;
     	}
     	Vector3 posToSource = ray.source.subtract(position);
     	double[] hits = Utils.pq(p(posToSource, ray), q(posToSource));
+    	if(!acceptNegative){
+    		hits = filterNegative(hits);
+    	}
     	if(hits.length == 0){
     		return null;
     	} else if(hits.length == 1){
@@ -34,6 +37,32 @@ public class Sphere {
     			return ray.pointAt(hits[0]);
     		} else {
     			return ray.pointAt(hits[1]);
+    		}
+    	}
+    }
+    
+    public Vector3 intersection(Ray ray){
+    	return intersection(ray, false);
+    }
+    
+    private double[] filterNegative(double[] array){
+    	if(array.length == 0){
+    		return array;
+    	} else if(array.length == 1){
+    		if(array[0] < 0){
+    			return new double[0];
+    		} else{
+    			return array;
+    		}
+    	} else {
+    		if(array[0] < 0 && array[1] < 0){
+    			return new double[0];
+    		} else if (array[0] < 0){
+    			return new double[]{array[1]};
+    		} else if (array[1] < 0){
+    			return new double[]{array[0]};
+    		} else {
+    			return array;
     		}
     	}
     }

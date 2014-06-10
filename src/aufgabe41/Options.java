@@ -47,6 +47,7 @@ public class Options extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				model.update(fieldSets);
+				setVisible(false);
 			}
 		});
 		
@@ -63,9 +64,7 @@ public class Options extends JDialog{
 		pack();
 	}
 	
-	protected void store(){
-		model.update(fieldSets);
-	}
+
 	
 
 	public void loadFromModel(){
