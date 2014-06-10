@@ -20,18 +20,38 @@ public class Scene {
 			new Sphere(new Vector3(215, 150, 160), 40),
 			new Sphere(new Vector3(315, 150, 160), 40),
 			new Sphere(new Vector3(415, 150, 160), 40),
-			new Sphere(new Vector3(515, 150, 160), 40) };
+			new Sphere(new Vector3(515, 150, 160), 40)
+
+            ,new Sphere(new Vector3(105, 265, 50), 40),
+            new Sphere(new Vector3(205, 265, 50), 40),
+            new Sphere(new Vector3(305, 265, 50), 40),
+            new Sphere(new Vector3(405, 265, 50), 40),
+            new Sphere(new Vector3(505, 265, 50), 40)
+
+            ,new Sphere(new Vector3(105, 365, 50), 40),
+            new Sphere(new Vector3(205, 365, 50), 40),
+            new Sphere(new Vector3(305, 365, 50), 40),
+            new Sphere(new Vector3(405, 365, 50), 40),
+            new Sphere(new Vector3(505, 365, 50), 40)
+
+            ,new Sphere(new Vector3(105, 465, 50), 40),
+            new Sphere(new Vector3(205, 465, 50), 40),
+            new Sphere(new Vector3(305, 465, 50), 40),
+            new Sphere(new Vector3(405, 465, 50), 40),
+            new Sphere(new Vector3(505, 465, 50), 40)
+
+    };
 
 	protected DiffuseLight[] lights = new DiffuseLight[] {
 			new DiffuseLight(new Vector3(200, 200, -100), new Vector3(0.6, 0.2,
 					.2)),
 			new DiffuseLight(new Vector3(200, 0, -100), new Vector3(0.3, 0.3,
 					.3)),
-			new DiffuseLight(new Vector3(600, 200, -100), new Vector3(0.3, 0.3,
+			new DiffuseLight(new Vector3(400, 500, -100), new Vector3(0.3, 0.3,
 					.3)) };
 
-	private final AmbientLight ambient = new AmbientLight(new Vector3(0.2, 0.2,
-			0.2));
+	private final AmbientLight ambient = new AmbientLight(new Vector3(0.1, 0.1,
+			0.1));
 
 	private final int H, W;
 
@@ -75,6 +95,8 @@ public class Scene {
 									I = I.add(d.intensity(P, N, V, s.K, s.k_sp));
 
 								}
+
+                                I = I.add(ambient.intensity(s.K));
 
 								draw(g, x, y, I.x, I.y, I.z);
 							}
