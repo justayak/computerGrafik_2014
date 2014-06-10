@@ -34,11 +34,11 @@ public class Scene {
             new Sphere(new Vector3(405, 365, 50), 40),
             new Sphere(new Vector3(505, 365, 50), 40)
 
-            ,new Sphere(new Vector3(105, 465, 50), 40),
-            new Sphere(new Vector3(205, 465, 50), 40),
-            new Sphere(new Vector3(305, 465, 50), 40),
-            new Sphere(new Vector3(405, 465, 50), 40),
-            new Sphere(new Vector3(505, 465, 50), 40)
+            ,new Sphere(new Vector3(105, 465, 50), 40, new Vector3(1, 0, 0), 0.2),
+            new Sphere(new Vector3(205, 465, 50), 40, new Vector3(0,1, 0), 0),
+            new Sphere(new Vector3(305, 465, 50), 40, new Vector3(0.1, 1, 0.1), 0.7),
+            new Sphere(new Vector3(405, 465, 50), 40, new Vector3(0, 0, 1), 0.4),
+            new Sphere(new Vector3(505, 465, 50), 40, new Vector3(1, 0, 1), 0.25)
 
     };
 
