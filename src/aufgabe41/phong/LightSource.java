@@ -8,7 +8,7 @@ import aufgabe41.Vector3;
 /**
  * Created by Julian on 10.06.2014.
  */
-public class DiffuseLight implements Light {
+public class LightSource implements Light {
 
 	double C_0 = 0.001;
 	double C_1 = 0.00002;
@@ -18,7 +18,7 @@ public class DiffuseLight implements Light {
 
 	public ZBuffer ZBuffer;
 
-	public DiffuseLight(Vector3 pos, Vector3 c) {
+	public LightSource(Vector3 pos, Vector3 c) {
 		this.p = pos;
 		this.c = c;
 	}

@@ -13,20 +13,21 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import aufgabe41.phong.DiffuseLight;
+
+import aufgabe41.phong.LightSource;
 import aufgabe41.phong.Window;
 
 public class LightModel {
-	public List<DiffuseLight> lights = Collections.singletonList(new DiffuseLight(Vector3.Null(), new Vector3(1,1,1)));
+	public List<LightSource> lights = Collections.singletonList(new LightSource(Vector3.Null(), new Vector3(1,1,1)));
 	
 	protected Window win;
 	
 
 	public void update(FieldSet[] fieldsets){
-		lights = new LinkedList<DiffuseLight>();
+		lights = new LinkedList<LightSource>();
 		for(FieldSet fieldset : fieldsets){
 			if(fieldset.activatedCheck.isSelected()){
-				lights.add(new DiffuseLight(
+				lights.add(new LightSource(
 						extractVector3(fieldset),
 						new Vector3(extractColor(fieldset.redField),
 								extractColor(fieldset.greenField),
@@ -41,7 +42,7 @@ public class LightModel {
 	
 	public void fill(FieldSet[] fieldsets){
 		int index = 0;
-		for(DiffuseLight df : lights){
+		for(LightSource df : lights){
 			if(fieldsets.length > index){
 				fieldsets[index].xField.setText(String.valueOf(df.position().x));
 				fieldsets[index].yField.setText(String.valueOf(df.position().y));

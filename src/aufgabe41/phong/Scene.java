@@ -22,12 +22,12 @@ public class Scene {
 			new Sphere(new Vector3(415, 150, 160), 40),
 			new Sphere(new Vector3(515, 150, 160), 40) };
 
-	protected DiffuseLight[] lights = new DiffuseLight[] {
-			new DiffuseLight(new Vector3(200, 200, -100), new Vector3(0.6, 0.2,
+	protected LightSource[] lights = new LightSource[] {
+			new LightSource(new Vector3(200, 200, -100), new Vector3(0.6, 0.2,
 					.2)),
-			new DiffuseLight(new Vector3(200, 0, -100), new Vector3(0.3, 0.3,
+			new LightSource(new Vector3(200, 0, -100), new Vector3(0.3, 0.3,
 					.3)),
-			new DiffuseLight(new Vector3(600, 200, -100), new Vector3(0.3, 0.3,
+			new LightSource(new Vector3(600, 200, -100), new Vector3(0.3, 0.3,
 					.3)) };
 
 	private final AmbientLight ambient = new AmbientLight(new Vector3(0.2, 0.2,
@@ -45,7 +45,7 @@ public class Scene {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, this.W, this.H);
 
-		for (DiffuseLight l : this.lights) {
+		for (LightSource l : this.lights) {
 			l.ZBuffer = new ZBuffer(l.position(), ELEMENTS, this.W, this.H);
 		}
 
@@ -70,7 +70,7 @@ public class Scene {
 
 							if (view.isVisibleAt(x, y, s)) {
 								Vector3 I = Vector3.Null();
-								for (DiffuseLight d : this.lights) {
+								for (LightSource d : this.lights) {
 
 									I = I.add(d.intensity(P, N, V, s.K, s.k_sp));
 

@@ -64,10 +64,10 @@ public class Window extends JPanel {
     
     public void updated(){
     	s = new Scene(WIDTH, HEIGHT);
-    	s.lights = new DiffuseLight[lm.lights.size()];
+    	s.lights = new LightSource[lm.lights.size()];
     	
     	int index = 0;
-    	for(DiffuseLight df : lm.lights){
+    	for(LightSource df : lm.lights){
     		s.lights[index] = df;
     		index++;
     	}
