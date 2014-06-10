@@ -16,13 +16,26 @@ public class Sphere {
 	 */
 	public final Vector3 position;
 	public final double radius;
+	
+	public final Vector3 K;
+	
+	public final double k_sp;
 
 	public Sphere(Vector3 P, double r) {
-		this.radius = r;
+		this( P, r, new Vector3(0.5, 0.5, 0.9), Math.random());
+
+	}
+	
+	public Sphere(Vector3 P, double r, Vector3 K, double k_sp){
+		
 		this.position = P;
+		this.radius = r;
+		this.K = K;
+		this.k_sp = k_sp;
+		
 	}
 
-	public final Vector3 K = new Vector3(0.5, 0.5, 0.9);
+	
 
 	public Vector3[] normal(int x, int y) {
 

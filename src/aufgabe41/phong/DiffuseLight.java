@@ -1,5 +1,7 @@
 package aufgabe41.phong;
 
+import static java.lang.Math.pow;
+
 import aufgabe41.Utils;
 import aufgabe41.Vector3;
 
@@ -33,13 +35,14 @@ public class DiffuseLight implements Light {
      * @param K Material coefficient
      * @return Intensity (RGB)
      */
-    public Vector3 intensity(Vector3 P, Vector3 N, Vector3 V, Vector3 K) {
+    public Vector3 intensity(Vector3 P, Vector3 N, Vector3 V, Vector3 K, double k_sp) {
     	N = N.normalize();
     	V = V.normalize();
         Vector3 L = this.p.subtract(P);
         double f = f(this.position().distance(P));
         Vector3 diff = diffuse(f, L, N, K);
-        Vector3 spec = specular();
+//        Vector3 spec = specular(f, N,L, V, k_sp);
+        Vector3 spec = Vector3.Null();
         double RED = Utils.clamp(diff.x + spec.x);
         double GREEN = Utils.clamp(diff.y + spec.y);
         double BLUE = Utils.clamp(diff.z + spec.z);
@@ -47,13 +50,23 @@ public class DiffuseLight implements Light {
     }
     
     private Vector3 diffuse(double f, Vector3 L, Vector3 N, Vector3 K){
+    	
     	double cosTheta = L.cosTheta(N);
+    	if(cosTheta < 0){
+    		return Vector3.Null(); 
+    	}
     	f = f * cosTheta;
     	return new Vector3(f * this.color().x * K.x, f * this.color().y * K.y, f * this.color().z * K.z);
     }
     
-    private Vector3 specular(){
-    	return Vector3.Null();
+    private Vector3 specular(double f, Vector3 N, Vector3 L, Vector3 V, double k_sp){
+    	Vector3 L0 = N.multiply(N.multiply(L));
+    	Vector3 L1 = L.add(L0.subtract(L).multiply(2));
+    	double cosAlpha = L1.cosTheta(V);
+    	double f2 = pow(cosAlpha, 2);
+    	
+    	return new Vector3(f * f2 * this.color().x * k_sp, f * f2 * this.color().y * k_sp, f * f2 * this.color().z* k_sp);
+    	
     }
     
     private double f(double r){

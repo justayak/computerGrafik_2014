@@ -62,7 +62,7 @@ public class Scene {
 						Vector3 P = s.intersection(new Ray(x, y));
 						if (P != null) {
 							
-							Vector3 N = s.position.subtract(P);
+							Vector3 N = P.subtract(s.position);
 							//
 							// Vector3[] NORMAL_POSITION = s.normal(x,y);
 							// Vector3 N = NORMAL_POSITION[0];
@@ -72,7 +72,7 @@ public class Scene {
 								Vector3 I = Vector3.Null();
 								for (DiffuseLight d : this.lights) {
 
-									I = I.add(d.intensity(P, N, V, s.K));
+									I = I.add(d.intensity(P, N, V, s.K, s.k_sp));
 
 								}
 
