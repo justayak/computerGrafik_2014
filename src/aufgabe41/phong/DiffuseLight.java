@@ -46,8 +46,8 @@ public class DiffuseLight implements Light {
 		Vector3 L = this.p.subtract(P);
 		double f = f(this.position().distance(P));
 		Vector3 diff = diffuse(f, L, N, K);
-//		 Vector3 spec = specular(f, N,L, V, k_sp);
-		Vector3 spec = Vector3.Null();
+		 Vector3 spec = specular(f, N,L, V, k_sp);
+//		Vector3 spec = Vector3.Null();
 		double RED = Utils.clamp(diff.x + spec.x);
 		double GREEN = Utils.clamp(diff.y + spec.y);
 		double BLUE = Utils.clamp(diff.z + spec.z);
@@ -67,12 +67,12 @@ public class DiffuseLight implements Light {
 
 	private Vector3 specular(double f, Vector3 N, Vector3 L, Vector3 V,
 			double k_sp) {
-		Vector3 L0 = N.multiply(N.multiply(L));
+		Vector3 L0 = N.multiply(N.cosTheta(L));
 		Vector3 L1 = L0.multiply(2).subtract(L);
 		double cosAlpha = L1.cosTheta(V);
 
 		if (cosAlpha > 0) {
-			double f2 = pow(cosAlpha, 2);
+			double f2 = pow(cosAlpha, 4);
 
 			return new Vector3(f * f2 * this.color().x * k_sp, f * f2
 					* this.color().y * k_sp, f * f2 * this.color().z * k_sp);
