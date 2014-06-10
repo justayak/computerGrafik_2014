@@ -29,9 +29,9 @@ public class Options extends JDialog{
 	JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 	
 
-	public Options(LightModel model, JFrame frame){
+	public Options(LightModel m, JFrame frame){
 		super(frame);
-		this.model = model;
+		this.model = m;
 		setModal(true);
 		setTitle("Lichtquellen einstellen");
 		setLayout(new BorderLayout());
@@ -46,7 +46,7 @@ public class Options extends JDialog{
 		okButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				store();
+				model.update(fieldSets);
 			}
 		});
 		
@@ -64,11 +64,17 @@ public class Options extends JDialog{
 	}
 	
 	protected void store(){
-		
+		model.update(fieldSets);
+	}
+	
+
+	public void loadFromModel(){
+		model.fill(fieldSets);
 	}
 	
 	public static void main(String[] args){
-		Options o = new Options(null, null);
+		Options o = new Options(new LightModel(), null);
+		o.loadFromModel();
 		o.setVisible(true);
 	}
 }

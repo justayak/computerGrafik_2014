@@ -23,17 +23,24 @@ public class FieldSet extends JPanel{
 	JLabel blueLabel = new JLabel("Blau");
 	JTextField blueField = new JTextField(8);
 	
+	JLabel xLabel = new JLabel("x");
+	JTextField xField = new JTextField(8);
+	
+	JLabel yLabel = new JLabel("y");
+	JTextField yField = new JTextField(8);
+	
+	JLabel zLabel = new JLabel("z");
+	JTextField zField = new JTextField(8);
+	
 	public FieldSet(){
-		super(new GridLayout(4, 2));
+		super(new GridLayout(7, 2));
 		
 		activatedCheck.setSelected(true);
 		activatedCheck.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean enabled = activatedCheck.isSelected();
-				redField.setEnabled(enabled);
-				greenField.setEnabled(enabled);
-				blueField.setEnabled(enabled);
+				enableAll(enabled);
 			}
 		});
 		add(activatedLabel);
@@ -48,6 +55,24 @@ public class FieldSet extends JPanel{
 		add(blueLabel);
 		add(blueField);
 		
+		add(xLabel);
+		add(xField);
+		
+		add(yLabel);
+		add(yField);
+		
+		add(zLabel);
+		add(zField);
+		
+	}
+	
+	public void enableAll(boolean b){
+		redField.setEnabled(b);
+		greenField.setEnabled(b);
+		blueField.setEnabled(b);
+		xField.setEnabled(b);
+		yField.setEnabled(b);
+		zField.setEnabled(b);
 	}
 	
 	
