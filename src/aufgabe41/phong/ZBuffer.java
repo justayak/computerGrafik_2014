@@ -35,8 +35,9 @@ public class ZBuffer {
             for (int y = 0; y < height; y++) {
                 for (Sphere s : elements) {
                     if (s.test(x, y)) {
-                        if(s.position.z < depth[x][y]){
-                            depth[x][y] = s.position.z;
+                        double distance = s.position.distance(this.P);
+                        if(distance < depth[x][y]){
+                            depth[x][y] = distance;
                             this.buffer[x][y] = s;
                         }
                     }
