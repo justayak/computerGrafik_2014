@@ -10,6 +10,8 @@ public class DiffuseLight implements Light {
 
     private final Vector3 p, c;
 
+    public ZBuffer ZBuffer;
+
     public DiffuseLight(Vector3 pos, Vector3 c){
         this.p = pos;
         this.c = c;

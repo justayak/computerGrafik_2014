@@ -15,10 +15,18 @@ public class Scene {
         new Sphere(new Vector3(305,155,10),40),
         new Sphere(new Vector3(405,155,10),40),
         new Sphere(new Vector3(505,155,10),40)
+
+        /*,new Sphere(new Vector3(105,155,120),40),
+        new Sphere(new Vector3(205,155,120),40),
+        new Sphere(new Vector3(305,155,120),40),
+        new Sphere(new Vector3(405,155,120),40),
+        new Sphere(new Vector3(505,155,120),40)*/
     };
 
     private final DiffuseLight[] lights = new DiffuseLight[]{
-        new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.8,0.8,.8))
+        new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.2,0.2,.2)),
+        new DiffuseLight(new Vector3(200,0,-100),new Vector3(0.3,0.3,.3)),
+        new DiffuseLight(new Vector3(600,200,-100),new Vector3(0.3,0.3,.3))
     };
 
     private final AmbientLight ambient = new AmbientLight(new Vector3(0.2,0.2,0.2));
@@ -33,6 +41,12 @@ public class Scene {
 
         g.setColor(Color.BLACK);
         g.fillRect(0,0,this.W, this.H);
+
+        for (DiffuseLight l : this.lights){
+            l.ZBuffer = new ZBuffer(l.position(),ELEMENTS);
+        }
+
+        ZBuffer view = new ZBuffer(ELEMENTS);
 
         Vector3 V = new Vector3(0,0,1);
 
@@ -66,7 +80,7 @@ public class Scene {
     }
 
     public static void draw(Graphics g, int x, int y, double R, double G, double B){
-        g.setColor(new Color((float)R,(float)G,(float)B));
+        g.setColor(new Color((float)Utils.clamp(R,0,1),(float)Utils.clamp(G,0,1),(float)Utils.clamp(B,0,1)));
         g.drawRect(x,y,1,1);
     }
 
