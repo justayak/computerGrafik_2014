@@ -10,11 +10,15 @@ import java.awt.*;
 public class Scene {
 
     private final Sphere[] ELEMENTS = new Sphere[]{
-        new Sphere(new Vector3(105,105,10),100)
+        new Sphere(new Vector3(105,155,10),40),
+        new Sphere(new Vector3(205,155,10),40),
+        new Sphere(new Vector3(305,155,10),40),
+        new Sphere(new Vector3(405,155,10),40),
+        new Sphere(new Vector3(505,155,10),40)
     };
 
     private final DiffuseLight[] lights = new DiffuseLight[]{
-        new DiffuseLight(new Vector3(0,0,0),new Vector3(0.8,0.8,.08))
+        new DiffuseLight(new Vector3(200,200,-100),new Vector3(0.8,0.8,.8))
     };
 
     private final AmbientLight ambient = new AmbientLight(new Vector3(0.2,0.2,0.2));

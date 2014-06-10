@@ -18,7 +18,7 @@ public class Sphere {
         this.position = P;
     }
 
-    public final Vector3 K = new Vector3(0.9,0.1,0.1);
+    public final Vector3 K = new Vector3(0.5,0.5,0.5);
 
     public Vector3[] normal(int x, int y){
         if (this.test(x,y)){
