@@ -11,8 +11,8 @@ public class AmbientLight implements Light {
     private final Vector3 position;
     private final Vector3 color;
 
-    public AmbientLight(Vector3 position, Vector3 color){
-        this.position = position;
+    public AmbientLight(Vector3 color){
+        this.position = Vector3.Null();
         this.color = color;
     }
 

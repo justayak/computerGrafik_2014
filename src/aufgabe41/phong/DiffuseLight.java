@@ -20,11 +20,6 @@ public class DiffuseLight implements Light {
         return this.c;
     }
 
-    @Override
-    public Vector3 position() {
-        return this.p;
-    }
-
     /**
      * @param P position of the Element
      * @param N Normal of the Element
@@ -39,12 +34,30 @@ public class DiffuseLight implements Light {
         Vector3 R = L.reflect(N);
         double diffuseLight = N.multiply(L);
         double specularLight = V.multiply(R);
-        if (diffuseLight > 0){
-            double cosTheta = Utils.clamp(N.multiply(L),0,1);
-
+        if (true){
+            //double cosTheta =  Utils.clamp(N.multiply(L),0,1);
+            double cosTheta = N.cosTheta(L);
+            double a = 0.001;
+            double b = 0.0002;
+            double c = 0.0001;
+            double r = this.position().distance(P);
+            double f = cosTheta * (1 / (a+b*r+c*r*r));
+            double RED = Utils.clamp(f * this.color().x * K.x,0,1);
+            double GREEN = Utils.clamp(f * this.color().y * K.y,0,1);
+            double BLUE = Utils.clamp(f * this.color().z * K.z,0,1);
+            return new Vector3(
+                    RED,
+                    GREEN,
+                    BLUE
+            );
         }
 
-        return null;
+        return Vector3.Null();
+    }
+
+    @Override
+    public Vector3 position() {
+        return this.p;
     }
 
 }

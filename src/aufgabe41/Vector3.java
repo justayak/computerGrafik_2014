@@ -80,7 +80,7 @@ public class Vector3 {
     }
 
     public double cosTheta(Vector3 v){
-        return (this.multiply(v) / (this.weight * v.weight));
+        return Math.abs(this.multiply(v) / (this.weight * v.weight));
     }
     
     public double lengthSquared(){

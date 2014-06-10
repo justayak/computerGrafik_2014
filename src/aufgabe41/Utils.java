@@ -46,7 +46,7 @@ public class Utils {
     public static double clamp(double v, double min, double max){
         if (v > max) return max;
         if (v < min) return min;
-        return min;
+        return v;
     }
 
 }

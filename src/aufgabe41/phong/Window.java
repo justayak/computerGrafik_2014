@@ -14,14 +14,18 @@ public class Window extends JPanel {
     public static final int HEIGHT = 800;
 
     public void paintComponent(Graphics g){
-
+        Scene s = new Scene(WIDTH,HEIGHT);
+        s.render(g);
 
     }
 
 
     public static void main(String[] args){
 
-        JFrame frame = new JFrame("phong");
+
+
+
+        JFrame frame = new JFrame("phong2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(Window.WIDTH, Window.HEIGHT);
         Window panel = new Window();

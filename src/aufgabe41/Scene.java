@@ -10,7 +10,7 @@ public class Scene {
     private final Vector3 camera = Vector3.Null();
 
     private final Sphere[] elements = new Sphere[]{
-        new Sphere(new Vector3(100, 100, 100.0), 30)
+        new Sphere(new Vector3(100, 100, 100.0), 5)
 
     };
 
