@@ -20,6 +20,8 @@ public class Window extends JPanel {
 
 
 
+
+
         // --- paint end
 
 
@@ -28,7 +30,7 @@ public class Window extends JPanel {
     private static void createAndShowGUI(){
         JFrame frame = new JFrame("Aufgabe 48");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(WIDTH,HEIGHT);
+        frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
         frame.getContentPane().add(new Window());
         frame.setVisible(true);
