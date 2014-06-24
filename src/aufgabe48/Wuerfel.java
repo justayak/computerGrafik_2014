@@ -13,7 +13,7 @@ public class Wuerfel implements Texture {
                 return Color.DARK_GRAY;
             }
         }
-        return Color.LIGHT_GRAY;
+        return Color.MAGENTA;
 
     }
 
