@@ -3,6 +3,7 @@ package aufgabe48;
 import aufgabe48.math.Mat4;
 import aufgabe48.math.Vec4;
 
+import javax.xml.soap.Text;
 import java.awt.*;
 
 /**
@@ -63,17 +64,30 @@ public class Cube {
         return new Vec4(8.927,6.273,5.2,1);
     }
 
+    private Texture texture = null;
+
+    public void setTexture(Texture t){
+        this.texture = t;
+    }
 
     public void render(Graphics g, Camera c){
-        Pixel p1 = c.getPixel(c.toNDC(this.worldAf()));
-        Pixel p2 = c.getPixel(c.toNDC(this.worldBf()));
-        Pixel p3 = c.getPixel(c.toNDC(this.worldCf()));
-        Pixel p4 = c.getPixel(c.toNDC(this.worldDf()));
+        Vec4 v1 = c.toNDC(this.worldAf());
+        Vec4 v2 = c.toNDC(this.worldBf());
+        Vec4 v3 = c.toNDC(this.worldCf());
+        Vec4 v4 = c.toNDC(this.worldDf());
+        Pixel p1 = c.getPixel(v1);
+        Pixel p2 = c.getPixel(v2);
+        Pixel p3 = c.getPixel(v3);
+        Pixel p4 = c.getPixel(v4);
 
-        Pixel p5 = c.getPixel(c.toNDC(this.worldAb()));
-        Pixel p6 = c.getPixel(c.toNDC(this.worldBb()));
-        Pixel p7 = c.getPixel(c.toNDC(this.worldCb()));
-        Pixel p8 = c.getPixel(c.toNDC(this.worldDb()));
+        Vec4 v5 = c.toNDC(this.worldAb());
+        Vec4 v6 = c.toNDC(this.worldBb());
+        Vec4 v7 = c.toNDC(this.worldCb());
+        Vec4 v8 = c.toNDC(this.worldDb());
+        Pixel p5 = c.getPixel(v5);
+        Pixel p6 = c.getPixel(v6);
+        Pixel p7 = c.getPixel(v7);
+        Pixel p8 = c.getPixel(v8);
 
         //System.out.println("{" + p1 + "," + p2 + "," + p3 + "," + p4 + "}");
 
@@ -101,6 +115,49 @@ public class Cube {
         g.drawLine(p5.x,p5.y,p6.x,p6.y);
         g.drawLine(p6.x,p6.y,p7.x,p7.y);
         g.drawLine(p7.x,p7.y,p8.x,p8.y);
+
+        g.setColor(Color.RED);
+        g.fillRect(p1.x,p1.y, 7,7);
+        g.fillRect(p4.x,p4.y, 7,7);
+        g.fillRect(p8.x,p8.y, 7,7);
+        g.setColor(Color.BLUE);
+        g.fillRect(p5.x,p5.y, 7,7);
+
+        g.setColor(Color.WHITE);
+
+        if (this.texture != null) {
+
+            // Faces:
+            // #1 P1 - P4 - P8 - P5  (front Seite)
+            System.out.println("p1" + p1 + " ,5" + p5);
+
+            Vec4 topLeft = v5;
+            Vec4 topRight = v8;
+            Vec4 bottomLeft = v1;
+            Vec4 bottomRight = v4;
+
+            Mat4 reduce = Mat4.scale(0.01);
+            Vec4 leftTopDown = reduce.multiply(bottomLeft.subtract(topLeft));
+            Vec4 rightTopDown = reduce.multiply(bottomRight.subtract(topRight));
+            Vec4 leftToRightTop = reduce.multiply(topRight.subtract(topLeft));
+            Vec4 leftToRightBottom = reduce.multiply(bottomRight.subtract(bottomLeft));
+
+            Vec4 leftVertical = topLeft;
+            Vec4 rightVertical = topRight;
+            Vec4 topHorizontal = topLeft;
+            Vec4 bottomHorizontal = bottomLeft;
+            double distanceHorizontal = leftVertical.distance(rightVertical);
+            double distanceVertical = topHorizontal.distance(bottomHorizontal);
+            double rightDistance = distanceHorizontal;
+
+
+
+            // #2 P1 - P2 - P5 - P6  (rechte Seite)
+
+
+        }
+
+
 
     }
 

@@ -29,8 +29,11 @@ public class Scene {
 
     public void render(Graphics g){
         g.setColor(Color.WHITE);
-        Cube c = new Cube(11,5,5,0.8);
-        c.render(g,this.camera);
+        Cube c1 = new Cube(9.5,5.8,5,0.5);
+        c1.setTexture(new Schachbrett());
+        Cube c2 = new Cube(11,4,5,0.5);
+        c1.render(g,this.camera);
+        c2.render(g,this.camera);
     }
 
 }

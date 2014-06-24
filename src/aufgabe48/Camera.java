@@ -67,7 +67,6 @@ public class Camera {
     public Vec4 toNDC(Vec4 v){
         Vec4 eye = this.worldToEye.multiply(v);
         Vec4 ndc = this.eyeCoordsToNDC.multiply(eye);
-        System.out.println("world:" + v + ", eye:" + eye + ", ndc:" + ndc);
         return ndc;
     }
 
