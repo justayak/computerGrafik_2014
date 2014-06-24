@@ -76,6 +76,15 @@ public class Mat4 {
         );
     }
 
+    public static Mat4 scale(double s){
+        return new Mat4(
+                s, 0, 0, 0,
+                0, s, 0, 0,
+                0, 0, s, 0,
+                0, 0, 0, 1
+        );
+    }
+
     public static Mat4 identity() {
         return new Mat4(
                 1, 0, 0, 0,

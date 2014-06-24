@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public class Window extends JPanel {
 
-    static final int WIDTH = 800;
-    static final int HEIGHT = 600;
+    static final int WIDTH = 600;
+    static final int HEIGHT = 400;
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -21,12 +21,8 @@ public class Window extends JPanel {
 
         // --- paint start
 
-        Mat4 rotX = Mat4.rotationX(180);
-        Vec4 v = new Vec4(10,20,0,1);
-
-        System.out.println(rotX);
-        System.out.println(v);
-        System.out.println(rotX.multiply(v));
+        Scene s = new Scene(WIDTH,HEIGHT);
+        s.render(g);
 
 
         // --- paint end
