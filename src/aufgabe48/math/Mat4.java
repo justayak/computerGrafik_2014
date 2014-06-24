@@ -1,5 +1,7 @@
 package aufgabe48.math;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Julian on 23.06.2014.
  */
@@ -229,10 +231,11 @@ public class Mat4 {
 
     @Override
     public String toString(){
-        return "[" + m00 + "," + m01 + "|" + m02 + "|" + m03 + "|\r\n" +
-                m10 + "|" + m11 + "|" + m12 + "|" + m13 + "|\r\n" +
-                m20 + "|" + m21 + "|" + m22 + "|" + m23 + "|\r\n" +
-                m30 + "|" + m31 + "|" + m32 + "|" + m33 + "]";
+        DecimalFormat f = new DecimalFormat("#0.000");
+        return "[" + f.format(m00) + "," + f.format(m01) + "|" + f.format(m02 )+ "|" + f.format(m03 )+ "|\r\n" +
+                f.format(m10 )+ "|" + f.format(m11 )+ "|" + f.format(m12 )+ "|" + f.format(m13 )+ "|\r\n" +
+                f.format(m20 )+ "|" + f.format(m21 )+ "|" + f.format(m22 )+ "|" + f.format(m23 )+ "|\r\n" +
+                f.format(m30 )+ "|" + f.format(m31 )+ "|" + f.format(m32 )+ "|" + f.format(m33 )+ "]";
     }
 
 }

@@ -70,6 +70,18 @@ public class Camera {
         return ndc;
     }
 
+    // Vektoren in NDC
+    public void drawRect(Graphics g, Vec4 TL, Vec4 TR, Vec4 BL, Vec4 BR){
+        Pixel TLPixel = this.getPixel(TL);
+        Pixel TRPixel = this.getPixel(TR);
+        Pixel BLPixel = this.getPixel(BL);
+        Pixel BRPixel = this.getPixel(BR);
+        g.drawLine(TLPixel.x,TLPixel.y,TRPixel.x,TRPixel.y);
+        g.drawLine(TLPixel.x,TLPixel.y,BLPixel.x,BLPixel.y);
+        g.drawLine(TRPixel.x,TRPixel.y,BRPixel.x,BRPixel.y);
+        g.drawLine(BRPixel.x,BRPixel.y,BLPixel.x,BLPixel.y);
+    }
+
     public Pixel getPixel(Vec4 vectorNdc){
         Vec4 hom = vectorNdc.homogenize();
         int x = (int) Math.floor((hom.x+1)*this.width/2);

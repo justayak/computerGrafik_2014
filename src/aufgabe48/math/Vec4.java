@@ -1,5 +1,6 @@
 package aufgabe48.math;
 
+import java.text.DecimalFormat;
 import java.util.IllegalFormatException;
 
 /**
@@ -29,6 +30,14 @@ public class Vec4 {
         return new Vec4((x/w),(y/w),(z/w),(w/w));
     }
 
+    public Vec4 add3(Vec4 v){
+        double x = this.x + v.x;
+        double y = this.y + v.y;
+        double z = this.z + v.z;
+        if (w == 0) return new Vec4(x,y,z,w, true);
+        return new Vec4((x/w),(y/w),(z/w),(w/w));
+    }
+
     public Vec4 homogenize(){
         if (w == 0) throw new RuntimeException("nope, w=0");
         if (w == 1) return this;
@@ -48,6 +57,14 @@ public class Vec4 {
         double y = w.y - v.y;
         double z = w.z - v.z;
         return new Vec4(x,y,z,1);
+    }
+
+    public Vec4 multiply3(double v){
+        double x = v * this.x;
+        double y = v * this.y;
+        double z = v * this.z;
+        if (w == 0) return new Vec4(x,y,z,w, true);
+        return new Vec4((x/w),(y/w),(z/w),(w/w));
     }
 
     public Vec4 multiply(double v){
@@ -142,6 +159,7 @@ public class Vec4 {
 
     @Override
     public String toString(){
-        return "[" + x + "|" + y + "|" + z + "|" + w + "]";
+        DecimalFormat f = new DecimalFormat("#0.000");
+        return "[" + f.format(x) + "|" + f.format(y) + "|" + f.format(z) + "|" + f.format(w) + "]";
     }
 }

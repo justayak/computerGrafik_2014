@@ -136,19 +136,82 @@ public class Cube {
             Vec4 bottomLeft = v1;
             Vec4 bottomRight = v4;
 
-            Mat4 reduce = Mat4.scale(0.01);
+            Mat4 reduce = Mat4.scale(1.0/texture.resolution());
+
             Vec4 leftTopDown = reduce.multiply(bottomLeft.subtract(topLeft));
             Vec4 rightTopDown = reduce.multiply(bottomRight.subtract(topRight));
             Vec4 leftToRightTop = reduce.multiply(topRight.subtract(topLeft));
             Vec4 leftToRightBottom = reduce.multiply(bottomRight.subtract(bottomLeft));
 
-            Vec4 leftVertical = topLeft;
-            Vec4 rightVertical = topRight;
-            Vec4 topHorizontal = topLeft;
-            Vec4 bottomHorizontal = bottomLeft;
-            double distanceHorizontal = leftVertical.distance(rightVertical);
-            double distanceVertical = topHorizontal.distance(bottomHorizontal);
-            double rightDistance = distanceHorizontal;
+            Vec4 xt = topLeft;          //  xt -->xtR
+            Vec4 xtR = topRight;        //  |      |
+            Vec4 xb = bottomLeft;       //  |      |
+            Vec4 xbR = bottomRight;     //  xb -->xbR
+
+            Vec4 yl = topLeft;          //  yl -- yr
+            Vec4 ybL = bottomLeft;      //  |      |
+            Vec4 yr = topRight;         //  v      v
+            Vec4 ybR = bottomRight;     //  yb -- xbR
+
+            System.out.println("l-t " + leftToRightTop);
+
+            for(int y = 0; y < texture.resolution(); y++){
+                for(int x = 0; x < texture.resolution(); x++){
+
+                    xt = topLeft.add3(leftToRightTop.multiply3(x));
+                    xb = bottomLeft.add3(leftToRightBottom.multiply3(x));
+                    yl = topLeft.add3(leftTopDown.multiply3(y));
+                    //yr = bottomLeft.add3(rightTopDown.multiply3(x));
+
+                    Vec4 topDown = reduce.multiply(xb.subtract(xt));
+
+                    g.setColor(texture.at(x,y));
+
+                    // draw it!
+                    Vec4 xtNext = topLeft.add3(leftToRightTop.multiply3(x+1));
+                    Vec4 xbNext = bottomLeft.add3(leftToRightBottom.multiply3(x+1));
+                    Vec4 topDownNext = reduce.multiply(xbNext.subtract(xtNext));
+
+                    Vec4 TL = xt.add3(topDown.multiply3(y));
+                    Vec4 BL = xt.add3(topDown.multiply3(y+1));
+                    Vec4 TR = xtNext.add3(topDownNext.multiply3(y));
+                    Vec4 BR = xtNext.add3(topDownNext.multiply3(y+1));
+
+                    c.drawRect(g,TL,TR,BL,BR);
+
+                    //Vec4 pos = xt.add3(topDown.multiply3(y));
+
+                    //g.fillRect(p.x,p.y,1,1);
+
+                    // draw it!
+                    //Vec4 xtAdd1 = topLeft.add3(leftToRightTop.multiply3(x+1));
+                    //Vec4 xbAdd1 = bottomLeft.add3(leftToRightBottom.multiply3(x+1));
+                    ///Vec4 topDownAdd1 = reduce.multiply(xbAdd1.subtract(xtAdd1));
+
+                    //Pixel pTL = c.getPixel(pos);
+
+
+                }
+            }
+
+            g.setColor(Color.WHITE);
+
+
+            //Vec4 topHorizontal = topLeft;
+            //Vec4 bottomHorizontal = bottomLeft;
+            //double distanceHorizontal = x1.distance(x2);
+            //double distanceVertical = x1.distance(x3);
+
+            /*while (true){
+                double u = (distanceHorizontal - x1.distance(x2))/ distanceHorizontal;
+                double v = (distanceVertical - x1.distance(x3)) / distanceVertical;
+                g.setColor(texture.at(u,v));
+
+                x1 = x1.add(leftToRightTop);
+                x3 = x3.add(leftToRightBottom);
+
+            }*/
+
 
 
 
