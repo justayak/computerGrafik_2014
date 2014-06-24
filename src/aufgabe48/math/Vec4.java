@@ -29,7 +29,7 @@ public class Vec4 {
         return new Vec4((x/w),(y/w),(z/w),(w/w));
     }
 
-    private Vec4 homogenize(){
+    public Vec4 homogenize(){
         if (w == 0) throw new RuntimeException("nope, w=0");
         if (w == 1) return this;
         return new Vec4(x/w, y/w, z/w, z/z);

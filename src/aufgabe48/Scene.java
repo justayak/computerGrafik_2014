@@ -20,16 +20,17 @@ public class Scene {
         double aperture = 30;
         Vec4 cameraPosition = new Vec4(4,5,3,1);
         Vec4 looksAt = new Vec4(7,5,4,1);
-        this.camera = new Camera(cameraPosition,aperture, looksAt,3,20);
+        this.camera = new Camera(cameraPosition,aperture, looksAt,3,20,this.width,this.height);
         // --- Camera festlegen ende
 
-        Cube c = new Cube(1,1,1,10);
 
     }
 
 
     public void render(Graphics g){
-
+        g.setColor(Color.WHITE);
+        Cube c = new Cube(11,5,5,0.8);
+        c.render(g,this.camera);
     }
 
 }
