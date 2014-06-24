@@ -76,10 +76,10 @@ public class Camera {
         Pixel TRPixel = this.getPixel(TR);
         Pixel BLPixel = this.getPixel(BL);
         Pixel BRPixel = this.getPixel(BR);
-        g.drawLine(TLPixel.x,TLPixel.y,TRPixel.x,TRPixel.y);
-        g.drawLine(TLPixel.x,TLPixel.y,BLPixel.x,BLPixel.y);
-        g.drawLine(TRPixel.x,TRPixel.y,BRPixel.x,BRPixel.y);
-        g.drawLine(BRPixel.x,BRPixel.y,BLPixel.x,BLPixel.y);
+
+        int x[] = {TLPixel.x, TRPixel.x, BRPixel.x, BLPixel.x};
+        int y[] = {TLPixel.y, TRPixel.y, BRPixel.y, BLPixel.y};
+        g.fillPolygon(x,y,4);
     }
 
     public Pixel getPixel(Vec4 vectorNdc){
