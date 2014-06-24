@@ -83,4 +83,9 @@ public class Vec4 {
     public double angleDeg(Vec4 v){
         return Math.toDegrees(this.angleDeg(v));
     }
+
+    @Override
+    public String toString(){
+        return "[" + x + "|" + y + "|" + z + "|" + w + "]";
+    }
 }

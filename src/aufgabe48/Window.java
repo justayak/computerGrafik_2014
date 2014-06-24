@@ -1,5 +1,8 @@
 package aufgabe48;
 
+import aufgabe48.math.Mat4;
+import aufgabe48.math.Vec4;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,8 +21,12 @@ public class Window extends JPanel {
 
         // --- paint start
 
+        Mat4 rotX = Mat4.rotationX(180);
+        Vec4 v = new Vec4(10,20,0,1);
 
-
+        System.out.println(rotX);
+        System.out.println(v);
+        System.out.println(rotX.multiply(v));
 
 
         // --- paint end

@@ -32,6 +32,7 @@ public class Mat4 {
     }
 
     public static Mat4 rotationX(double deg) {
+        deg = Math.toRadians(deg);
         double cos = Math.cos(deg);
         double sin = Math.sin(deg);
         return new Mat4(
@@ -43,6 +44,7 @@ public class Mat4 {
     }
 
     public static Mat4 rotationY(double deg) {
+        deg = Math.toRadians(deg);
         double cos = Math.cos(deg);
         double sin = Math.sin(deg);
         return new Mat4(
@@ -54,6 +56,7 @@ public class Mat4 {
     }
 
     public static Mat4 rotationZ(double deg) {
+        deg = Math.toRadians(deg);
         double cos = Math.cos(deg);
         double sin = Math.sin(deg);
         return new Mat4(
@@ -213,6 +216,14 @@ public class Mat4 {
         return t00 * (t11 * t22 - t12 * t21)
                 + t01 * (t12 * t20 - t10 * t22)
                 + t02 * (t10 * t21 - t11 * t20);
+    }
+
+    @Override
+    public String toString(){
+        return "[" + m00 + "," + m01 + "|" + m02 + "|" + m03 + "|\r\n" +
+                m10 + "," + m11 + "|" + m12 + "|" + m13 + "|\r\n" +
+                m20 + "," + m21 + "|" + m22 + "|" + m23 + "|\r\n" +
+                m30 + "," + m31 + "|" + m32 + "|" + m33 + "]";
     }
 
 }
