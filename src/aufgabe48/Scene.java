@@ -32,6 +32,7 @@ public class Scene {
         Cube c1 = new Cube(9.5,5.8,5,0.5);
         c1.setTexture(new Schachbrett());
         Cube c2 = new Cube(11,4,5,0.5);
+        c2.setTexture(new Wuerfel());
         c1.render(g,this.camera);
         c2.render(g,this.camera);
     }

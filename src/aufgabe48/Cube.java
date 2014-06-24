@@ -94,9 +94,25 @@ public class Cube {
         if (this.texture != null) {
 
             // Faces:
-            this.render(v5,v8,v1,v4,g,c);
-            this.render(v5,v8,v6,v7,g,c);
-            this.render(v8,v7,v4,v3,g,c);
+            Face f1 = new Face(v1,v2,v4,v3);
+            Face f2 = new Face(v6,v5,v7,v8);
+            Face f3 = new Face(v2,v6,v3,v7);
+            Face f4 = new Face(v5,v1,v8,v4);
+            Face f5 = new Face(v5,v6,v1,v2);
+            Face f6 = new Face(v7,v8,v3,v4);
+
+            this.checkVisibility(f1,f2,f3,f4,f5,f6);
+
+            if (f1.isVisible) this.render(f1,g,c);
+            if (f2.isVisible) this.render(f2,g,c);
+            if (f3.isVisible) this.render(f3,g,c);
+            if (f4.isVisible) this.render(f4,g,c);
+            if (f5.isVisible) this.render(f5,g,c);
+            if (f6.isVisible) this.render(f6,g,c);
+            //this.render(v6,v7,v5,v8,g,c);
+            //this.render(v8,v7,v4,v3,g,c);
+
+
         }else{
             g.drawLine(p1.x,p1.y,p2.x,p2.y);
             g.drawLine(p2.x,p2.y,p3.x,p3.y);
@@ -116,7 +132,28 @@ public class Cube {
 
     }
 
-    public void render(Vec4 topLeft,Vec4 topRight,Vec4 bottomLeft,Vec4 bottomRight, Graphics g, Camera c){
+    public void checkVisibility(Face f1, Face f2, Face f3, Face f4, Face f5, Face f6){
+        checkPair(f1,f2);
+        checkPair(f3,f4);
+        checkPair(f5,f6);
+
+    }
+
+    private void checkPair(Face a, Face b){
+        double diff = Math.abs(a.center.z-b.center.z);
+        if (a.center.z != b.center.z && diff >0.03){ // Double-Genauigkeit...
+            if(a.center.z < b.center.z) a.isVisible = true;
+            else b.isVisible = true;
+        }else {
+            System.out.println("y " + (a.TL.x < a.TR.x) );
+            if(a.TL.x > a.TR.x) a.isVisible = true;
+            else b.isVisible = true;
+
+        }
+    }
+
+    public void render(Face f, Graphics g, Camera c){
+        Vec4 topLeft = f.TL,topRight=f.TR,bottomLeft = f.BL,bottomRight = f.BR;
 
         Mat4 reduce = Mat4.scale(1.0/texture.resolution());
 
@@ -135,15 +172,12 @@ public class Cube {
         Vec4 yr = topRight;         //  v      v
         Vec4 ybR = bottomRight;     //  yb -- xbR
 
-        System.out.println("l-t " + leftToRightTop);
-
         for(int y = 0; y < texture.resolution(); y++){
             for(int x = 0; x < texture.resolution(); x++){
 
                 xt = topLeft.add3(leftToRightTop.multiply3(x));
                 xb = bottomLeft.add3(leftToRightBottom.multiply3(x));
                 yl = topLeft.add3(leftTopDown.multiply3(y));
-                //yr = bottomLeft.add3(rightTopDown.multiply3(x));
 
                 Vec4 topDown = reduce.multiply(xb.subtract(xt));
 
