@@ -26,7 +26,7 @@ public class Main {
         glcanvas.addGLEventListener(r);
         glcanvas.setSize( 800, 600 );
 
-        JFrame frame = new JFrame( "Hello World" );
+        JFrame frame = new JFrame( "Hello World");
         frame.getContentPane().add( glcanvas);
 
         // shutdown the program on windows close event
