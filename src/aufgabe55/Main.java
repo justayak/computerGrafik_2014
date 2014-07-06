@@ -22,7 +22,8 @@ public class Main {
 
         // The canvas is the widget that's drawn in the JFrame
         GLCanvas glcanvas = new GLCanvas(capabilities);
-        glcanvas.addGLEventListener(new Renderer());
+        Renderer r = new Renderer();
+        glcanvas.addGLEventListener(r);
         glcanvas.setSize( 800, 600 );
 
         JFrame frame = new JFrame( "Hello World" );
@@ -37,6 +38,8 @@ public class Main {
 
         frame.setSize( frame.getContentPane().getPreferredSize() );
         frame.setVisible( true );
+
+        r.startUpdate(glcanvas);
 
 
     }
